@@ -1,4 +1,3 @@
-writor
-======
+## Writor
 
-a realy blog
+a blog app based on Laravel

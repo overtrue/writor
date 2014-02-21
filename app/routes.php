@@ -15,3 +15,6 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+//backend
+Route::controller('/admin/post', '\\Backend\\PostController');

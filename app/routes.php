@@ -18,3 +18,4 @@ Route::get('/', function()
 
 //backend
 Route::controller('/admin/post', '\\Backend\\PostController');
+Route::controller('/admin/category', '\\Backend\\CategoryController');

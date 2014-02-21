@@ -1,0 +1,22 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+	font-family: "Noto Sans","Microsoft Yahei",sans-serif;
+}
+.inline-block {display: inline-block;}
+
+h2 ~ button.btn {margin-left: 10px; margin-bottom: 10px;}
+
+.navbar {min-height: 40px;}
+
+/* overwrite */
+.form-horizontal .form-group {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin:0;
+}
+

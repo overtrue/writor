@@ -2,6 +2,7 @@
 
 use \View;
 use \Input;
+use \Redirect;
 use \Validator;
 
 class CategoryController extends BaseController {
@@ -12,9 +13,9 @@ class CategoryController extends BaseController {
      *
      * @return object
      */
-    public function getCategory()
+    public function getAll()
     {
-        return View::make('backend.pages.post-category');
+        return View::make('backend.pages.category-all');
     }
 
     /**
@@ -24,16 +25,16 @@ class CategoryController extends BaseController {
      *
      * @return object
      */
-    public function postCreateCategory()
+    public function postCreate()
     {
         $rules = array(
-                  'name'     => 'required',
-                  'slug'     => 'regex:/^[a-z0-9_-]$/',
+                  'name'      => 'required',
+                  'slug'      => 'regex:/^[a-z0-9_-]$/',
                   'parent_id' => 'integer',
                  );
         $validator = Validator::make(Input::all(), $rules);
         if ($validator->fails()) {
-            return Redirect::back()->with($validator)->withInput();
+            return Redirect::back()->withErrors($validator)->withInput();
         }
 
         $category = Term::fill();

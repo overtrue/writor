@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh_CN">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,7 +8,7 @@
   <meta name="description" content="Neon Admin Panel" />
   <meta name="author" content="Laborator.co" />
 
-  <title>Neon</title>
+  <title>Writor</title>
 
   <link rel="stylesheet" href="{{ asset('/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}"  id="style-resource-1">
   <link rel="stylesheet" href="{{ asset('/assets/css/font-icons/entypo/css/entypo.css') }}"  id="style-resource-2">
@@ -32,26 +32,41 @@
 
   <!-- TS1392191283: Neon - Responsive Admin Template created by Laborator -->
 </head>
-<body class="page-body page-fade" data-url="http://themes.laborator.co/neon">
-  <div class="page-container horizontal-menu">
-    <header class="navbar navbar-fixed-top">
-      <!-- logo -->
-      <div class="navbar-brand">
-        <a href="dashboard/main/">
-          <h1>Writor</h1>
-        </a>
-      </div>
-      <ul class="navbar-nav">
+<body class="page-body page-fade">
+  <div class="page-container @if(isset($_COOKIE['sidebar_status']) && $_COOKIE['sidebar_status'] == 'hide') sidebar-collapsed @endif">
+    <div class="sidebar-menu">
+      <header class="logo-env">
+        <!-- logo -->
+        <div class="logo">
+          <a href="{{url('admin')}}">
+            <h1>Writor</h1>
+          </a>
+        </div>
+        <!-- logo collapse icon -->
+        <div class="sidebar-collapse">
+          <a href="#" class="sidebar-collapse-icon with-animation">
+            <!-- add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition --> <i class="entypo-menu"></i>
+          </a>
+        </div>
+        <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+        <div class="sidebar-mobile-menu visible-xs">
+          <a href="#" class="with-animation">
+            <!-- add class "with-animation" to support animation --> <i class="entypo-menu"></i>
+          </a>
+        </div>
+      </header>
+      <ul id="main-menu" class="">
         <li class="opened active">
-          <a href="dashboard/main/"> <i class="entypo-gauge"></i>
+          <a href="{{ url('admin') }}">
+            <i class="entypo-gauge"></i>
             <span>控制面板</span>
           </a>
         </li>
         <li>
-          <a href="layouts/layout-api/"> <i class="entypo-doc-text-inv"></i>
+          <a href="{{ url('/admin/post/all') }}">
+            <i class="entypo-doc-text-inv"></i>
             <span>文章</span>
           </a>
-
           <ul>
             <li>
               <a href="{{ url('/admin/post/all') }}">
@@ -68,7 +83,7 @@
             </li>
 
             <li>
-              <a href="{{ url('/admin/post/category') }}">
+              <a href="{{ url('/admin/category/all') }}">
                 <i class="entypo-folder"></i>
                 <span>文章分类</span>
               </a>
@@ -164,121 +179,97 @@
           </ul>
         </li>
       </ul>
-      <ul class="nav navbar-right pull-right">
+    </div>
+    <div class="main-content container">
+      <div class="row">
+        <!-- Profile Info and Notifications -->
+        <div class="col-md-6 col-sm-8 clearfix">
+          <ul class="user-info pull-left pull-none-xsm">
 
-        <!-- dropdowns -->
-        <!-- raw links -->
-        <li class="dropdown"></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-            Skin
-            <span class="label label-danger margin-left">New</span>
-          </a>
+            <!-- Profile Info -->
+            <li class="profile-info dropdown">
+              <!-- add class "pull-right" if you want to place this from right -->
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <img src="http://themes.laborator.co/neon/assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
+                Art Ramadani
+              </a>
 
-          <ul class="dropdown-menu theme-skins pull-right">
-            <li class="caret"></li>
-
-            <li class="active">
-              <a href="layouts/horizontal-menu-fluid/?skin=default" data-skin="default">
-                <i class="skin-main"></i>
-                Default
+              <ul class="dropdown-menu">
+                <!-- Reverse Caret -->
+                <li class="caret"></li>
+                <!-- Profile sub-links -->
+                <li>
+                  <a href="#">
+                    <i class="entypo-user"></i>
+                    编辑资料
+                  </a>
+                </li>
+                <li>
+                  <a href="http://themes.laborator.co/neon/mailbox/main/">
+                    <i class="entypo-mail"></i>
+                    Inbox
+                  </a>
+                </li>
+                <li>
+                  <a href="http://themes.laborator.co/neon/extra/calendar/">
+                    <i class="entypo-calendar"></i>
+                    Calendar
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <i class="entypo-clipboard"></i>
+                    Tasks
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!-- Raw Links -->
+        <div class="col-md-6 col-sm-4 clearfix hidden-xs">
+          <ul class="list-inline links-list pull-right">
+            <li>
+              <a href="#" data-toggle="chat" data-animate="1" data-collapse-sidebar="1">
+                <i class="entypo-chat"></i>
+                Chat
+                <span class="badge badge-success chat-notifications-badge is-hidden">0</span>
               </a>
             </li>
-
+            <li class="sep"></li>
             <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=blue" data-skin="blue">
-                <i class="skin-blue"></i>
-                Blue
-              </a>
-            </li>
-
-            <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=red" data-skin="red">
-                <i class="skin-red"></i>
-                Red
-              </a>
-            </li>
-
-            <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=green" data-skin="green">
-                <i class="skin-green"></i>
-                Green
-              </a>
-            </li>
-
-            <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=cafe" data-skin="cafe">
-                <i class="skin-cafe"></i>
-                Cafe
-              </a>
-            </li>
-
-            <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=purple" data-skin="purple">
-                <i class="skin-purple"></i>
-                Purple
-              </a>
-            </li>
-
-            <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=yellow" data-skin="yellow">
-                <i class="skin-yellow"></i>
-                Yellow
-              </a>
-            </li>
-
-            <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=black" data-skin="black">
-                <i class="skin-black"></i>
-                Black
-              </a>
-            </li>
-
-            <li>
-              <a href="layouts/horizontal-menu-fluid/?skin=white" data-skin="white">
-                <i class="skin-white"></i>
-                White
+              <a href="">
+                注销登录
+                <i class="entypo-logout right"></i>
               </a>
             </li>
           </ul>
-        </li>
-
-        <li class="sep"></li>
-
+        </div>
+      </div>
+      <hr />
+      <ol class="breadcrumb bc-3">
         <li>
-          <a href="extra/login/">
-            注销登录
-            <i class="entypo-logout right"></i>
+          <a href="http://themes.laborator.co/neon/dashboard/main/">
+            <i class="entypo-home"></i>
+            Home
           </a>
         </li>
-
-        <!-- mobile only -->
-        <li class="visible-xs">
-
-          <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
-          <div class="horizontal-mobile-menu visible-xs">
-            <a href="#" class="with-animation">
-              <!-- add class "with-animation" to support animation -->
-              <i class="entypo-menu"></i>
-            </a>
-          </div>
-
+        <li>
+          <a href="">Dashboard</a>
         </li>
-
-      </ul>
-      <!-- /sidebar --> </header>
-    <div class="main-content container">
+        <li class="active"><strong>What's New</strong>
+        </li>
+      </ol>
       @yield('content')
       <!-- Footer -->
       <footer class="main">
-        &copy; {{date('Y')}}
-        <strong>Neon</strong>
+        &copy; {{date('Y')}} <strong>Neon</strong>
         Admin Theme by
         <a href="http://laborator.co" target="_blank">Laborator</a>
       </footer>
     </div>
   </div>
-  
+
   <script src="{{ asset('/assets/js/gsap/main-gsap.js') }}" id="script-resource-1"></script>
   <script src="{{ asset('/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}" id="script-resource-2"></script>
   <script src="{{ asset('/assets/js/bootstrap.js') }}" id="script-resource-3"></script>
@@ -288,6 +279,14 @@
   <script src="{{ asset('/assets/js/cookies.min.js') }}" id="script-resource-7"></script>
   <script src="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.min.js') }}" id="script-resource-11"></script>
   <script src="{{ asset('/assets/js/admin-common.js') }}" id="script-resource-23"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var currentAction = $('.sidebar-menu a[href="{{URL::current()}}"]');
+    var parentLink = currentAction.parent().parent('ul').prev('a');
+    var breadCrumbs = $('.breadcrumb');
+    breadCrumbs.find('li:last strong').text(currentAction.find('span').text()).parent().prev('li').find('a').attr('href', parentLink.attr('href')).text(parentLink.text());
+  });
+  </script>
   @yield('page_js')
 </body>
 </html>

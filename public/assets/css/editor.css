@@ -327,7 +327,6 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #f22;}
 }
 .editor-toolbar {
   position: relative;
-  opacity: 0.9;
 }
 .editor-toolbar:before, .editor-toolbar:after {
   display: block;

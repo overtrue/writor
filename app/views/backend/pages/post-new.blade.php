@@ -3,9 +3,6 @@
       <div class="row">
         <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
           <div class="col-md-12 form-group">
-            <h2>撰写新文章</h2>          
-          </div> 
-          <div class="col-md-12 form-group">
             <input type="text" class="form-control " name="title" value="" placeholder="文章标题"><br>
           </div>
           <div class="col-md-12 form-group">
@@ -62,7 +59,7 @@
     $(document).scroll(function() {
       var editorToobar = $($('.editor-toolbar')[0]);
       var cloneEditorToobar = editorToobar.clone();
-          cloneEditorToobar.addClass('clone-editor-toolbar').css({'position':'fixed', 'top':'50px','background':'#fff','z-index':999999999, width:editorToobar.width()});
+          cloneEditorToobar.addClass('clone-editor-toolbar').css({'position':'fixed', 'top':'0','background':'#fff','z-index':999999999, width:editorToobar.width()});
       if ($(document).scrollTop() >= editorToobar.offset().top - editorToobar.height()) {
         $('.clone-editor-toolbar').length || editorToobar.after(cloneEditorToobar);
       } else {

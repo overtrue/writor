@@ -15,14 +15,9 @@ var public_vars = public_vars || {};
     // Sidebar Menu var
     public_vars.$body     = $("body");
     public_vars.$pageContainer  = public_vars.$body.find(".page-container");
-    public_vars.$chat       = public_vars.$pageContainer.find('#chat');
-    public_vars.$horizontalMenu = public_vars.$pageContainer.find('header.navbar');
-    // public_vars.$sidebarMenu  = public_vars.$pageContainer.find('.sidebar-menu');
-    // public_vars.$mainMenu     = public_vars.$sidebarMenu.find('#main-menu');
+    public_vars.$sidebarMenu  = public_vars.$pageContainer.find('.sidebar-menu');
+    public_vars.$mainMenu     = public_vars.$sidebarMenu.find('#main-menu');
     public_vars.$mainContent  = public_vars.$pageContainer.find('.main-content');
-    // public_vars.$sidebarUserEnv = public_vars.$sidebarMenu.find('.sidebar-user-info');
-    // public_vars.$sidebarUser  = public_vars.$sidebarUserEnv.find('.user-link');
-    
     
     public_vars.$body.addClass('loaded');
     
@@ -31,46 +26,56 @@ var public_vars = public_vars || {};
     { 
       // Do not let page without showing if JS fails somewhere
       init_page_transitions();
-    }); 
+    });
+        
+    // Sidebar Menu Setup
+    setup_sidebar_menu();
     
-    // Horizontal Menu Setup
-    setup_horizontal_menu();
-         
-    // Mobile Horizontal Menu Collapse icon
-    public_vars.$horizontalMenu.find(".horizontal-mobile-menu a").on('click', function(ev)
+    // Sidebar Collapse icon
+    public_vars.$sidebarMenu.find(".sidebar-collapse-icon").on('click', function(ev)
     {
       ev.preventDefault();
       
-      var $menu = public_vars.$horizontalMenu.find('.navbar-nav'),
-        with_animation = $(this).hasClass('with-animation');
+      var with_animation = $(this).hasClass('with-animation');
+      
+      toggle_sidebar_menu(with_animation);
+    });
+    
+    
+    
+    
+    // Mobile Sidebar Collapse icon
+    public_vars.$sidebarMenu.find(".sidebar-mobile-menu a").on('click', function(ev)
+    {
+      ev.preventDefault();
+      
+      var with_animation = $(this).hasClass('with-animation');
       
       if(with_animation)
       {
-        $menu.stop().slideToggle('normal', function()
+        public_vars.$mainMenu.stop().slideToggle('normal', function()
         {
-          $menu.attr('height', 'auto');
-          
-          if($menu.css('display') == 'none')
-          {
-            $menu.attr('style', '');
-          }
+          public_vars.$mainMenu.css('height', 'auto');
         });
       }
       else
       {
-        $menu.toggle();
+        public_vars.$mainMenu.toggle();
       }
     });
-
-    //iCheck
-    if($.isFunction($.fn.iCheck))
+    
+    
+    
+    // Close Sidebar if Tablet Screen is visible
+    public_vars.$sidebarMenu.data('initial-state', (public_vars.$pageContainer.hasClass('sidebar-collapsed') ? 'closed' : 'open'));
+    
+    if(is('tabletscreen'))
     {
-      $('input').iCheck({
-        checkboxClass: 'icheckbox_minimal-blue',
-        radioClass: 'iradio_minimal',
-        increaseArea: '0%' // optional
-      });
+      hide_sidebar_menu(false);
     }
+  
+  
+  
   
     // NiceScroll
     if($.isFunction($.fn.niceScroll))
@@ -92,33 +97,33 @@ var public_vars = public_vars || {};
         $(".scroller").getNiceScroll().show();
       });
       
-      // var fixed_sidebar = $(".sidebar-menu.fixed");
+      var fixed_sidebar = $(".sidebar-menu.fixed");
       
-      // if(fixed_sidebar.length == 1)
-      // {
-      //   var fs_tm = 0;
+      if(fixed_sidebar.length == 1)
+      {
+        var fs_tm = 0;
         
-      //   fixed_sidebar.niceScroll({
-      //     cursorcolor: '#454a54',
-      //     cursorborder: '1px solid #454a54',
-      //     railpadding: {right: 3},
-      //     railalign: 'right',
-      //     cursorborderradius: 1
-      //   });
+        fixed_sidebar.niceScroll({
+          cursorcolor: '#454a54',
+          cursorborder: '1px solid #454a54',
+          railpadding: {right: 3},
+          railalign: 'right',
+          cursorborderradius: 1
+        });
         
-      //   fixed_sidebar.on('click', 'li a', function()
-      //   { 
-      //     fixed_sidebar.getNiceScroll().resize();
-      //     fixed_sidebar.getNiceScroll().show();
+        fixed_sidebar.on('click', 'li a', function()
+        { 
+          fixed_sidebar.getNiceScroll().resize();
+          fixed_sidebar.getNiceScroll().show();
           
-      //     window.clearTimeout(fs_tm);
+          window.clearTimeout(fs_tm);
           
-      //     fs_tm = setTimeout(function()
-      //     {           
-      //       fixed_sidebar.getNiceScroll().resize();
-      //     }, 500);
-      //   });
-      // }
+          fs_tm = setTimeout(function()
+          {           
+            fixed_sidebar.getNiceScroll().resize();
+          }, 500);
+        });
+      }
     }
     
     
@@ -232,17 +237,164 @@ var public_vars = public_vars || {};
       
       if(do_collapse)
       {
+        $body.slideUp('normal', fit_main_content_height);
         $panel.addClass('panel-collapse');
       }
       else
       {       
+        $body.slideDown('normal', fit_main_content_height);
         $panel.removeClass('panel-collapse');
       }
     });
     
     
     
-       
+    
+    // Data Toggle for Radio and Checkbox Elements
+    $('[data-toggle="buttons-radio"]').each(function()
+    {
+      var $buttons = $(this).children();
+      
+      $buttons.each(function(i, el)
+      {
+        var $this = $(el);
+        
+        $this.click(function(ev)
+        {
+          $buttons.removeClass('active');
+        });
+      });
+    });
+    
+    $('[data-toggle="buttons-checkbox"]').each(function()
+    {
+      var $buttons = $(this).children();
+      
+      $buttons.each(function(i, el)
+      {
+        var $this = $(el);
+        
+        $this.click(function(ev)
+        {
+          $this.removeClass('active');
+        });
+      });
+    });
+    
+    $('[data-loading-text]').each(function(i, el) // Temporary for demo purpose only
+    {
+      var $this = $(el);
+      
+      $this.on('click', function(ev)
+      {
+        $this.button('loading');
+        
+        setTimeout(function(){ $this.button('reset'); }, 1800);
+      });
+    });
+    
+    
+    
+    
+    // Popovers and tooltips
+    $('[data-toggle="popover"]').each(function(i, el)
+    {
+      var $this = $(el),
+        placement = attrDefault($this, 'placement', 'right'),
+        trigger = attrDefault($this, 'trigger', 'click'),
+        popover_class = $this.hasClass('popover-secondary') ? 'popover-secondary' : ($this.hasClass('popover-primary') ? 'popover-primary' : ($this.hasClass('popover-default') ? 'popover-default' : ''));
+      
+      $this.popover({
+        placement: placement,
+        trigger: trigger
+      });
+
+      $this.on('shown.bs.popover', function(ev)
+      {
+        var $popover = $this.next();
+        
+        $popover.addClass(popover_class);
+      });
+    });
+    
+    $('[data-toggle="tooltip"]').each(function(i, el)
+    {
+      var $this = $(el),
+        placement = attrDefault($this, 'placement', 'top'),
+        trigger = attrDefault($this, 'trigger', 'hover'),
+        popover_class = $this.hasClass('tooltip-secondary') ? 'tooltip-secondary' : ($this.hasClass('tooltip-primary') ? 'tooltip-primary' : ($this.hasClass('tooltip-default') ? 'tooltip-default' : ''));
+      
+      $this.tooltip({
+        placement: placement,
+        trigger: trigger
+      });
+
+      $this.on('shown.bs.tooltip', function(ev)
+      {
+        var $tooltip = $this.next();
+        
+        $tooltip.addClass(popover_class);
+      });
+    });
+
+    
+    
+    
+    // jQuery Knob
+    if($.isFunction($.fn.knob))
+    {   
+      $(".knob").knob({
+        change: function (value) {
+        },
+        release: function (value) {
+        },
+        cancel: function () {
+        },
+        draw: function () {
+        
+          if (this.$.data('skin') == 'tron') {
+        
+            var a = this.angle(this.cv) // Angle
+              ,
+              sa = this.startAngle // Previous start angle
+              ,
+              sat = this.startAngle // Start angle
+              ,
+              ea // Previous end angle
+              , eat = sat + a // End angle
+              ,
+              r = 1;
+        
+            this.g.lineWidth = this.lineWidth;
+        
+            this.o.cursor && (sat = eat - 0.3) && (eat = eat + 0.3);
+        
+            if (this.o.displayPrevious) {
+              ea = this.startAngle + this.angle(this.v);
+              this.o.cursor && (sa = ea - 0.3) && (ea = ea + 0.3);
+              this.g.beginPath();
+              this.g.strokeStyle = this.pColor;
+              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
+              this.g.stroke();
+            }
+        
+            this.g.beginPath();
+            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
+            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
+            this.g.stroke();
+        
+            this.g.lineWidth = 2;
+            this.g.beginPath();
+            this.g.strokeStyle = this.o.fgColor;
+            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
+            this.g.stroke();
+        
+            return false;
+          }
+        }
+      });
+    }
+    
     // Radio Toggle
     if($.isFunction($.fn.bootstrapSwitch))
     {
@@ -279,6 +431,7 @@ var public_vars = public_vars || {};
       }
     }
     
+    
     // SelectBoxIt Dropdown replacement
     if($.isFunction($.fn.selectBoxIt))
     {
@@ -296,67 +449,29 @@ var public_vars = public_vars || {};
       });
     }
     
+    
     // Auto Size for Textarea
     if($.isFunction($.fn.autosize))
     {
       $("textarea.autogrow, textarea.autosize").autosize();
     }
+
+    // iCheck
+    if($.isFunction($.fn.iCheck))
+    {
+      $("input:checkbox").iCheck({
+        checkboxClass: 'icheckbox_minimal',
+        radioClass: 'iradio_minimal',
+        //increaseArea: '20%' // optional
+      });
+    }
+    
     
     // Tagsinput
     if($.isFunction($.fn.tagsinput))
     {
       $(".tagsinput").tagsinput();
     }
-    
-    // Typeahead
-    if($.isFunction($.fn.typeahead))
-    {
-      $(".typeahead").each(function(i, el)
-      {
-        var $this = $(el),
-          opts = {
-            name: $this.attr('name') ? $this.attr('name') : ($this.attr('id') ? $this.attr('id') : 'tt')
-          };
-        
-        if($this.hasClass('tagsinput'))
-          return;
-          
-        if($this.data('local'))
-        {
-          var local = $this.data('local');
-          
-          local = local.replace(/\s*,\s*/g, ',').split(',');
-          
-          opts['local'] = local;
-        }
-        
-        if($this.data('prefetch'))
-        {
-          var prefetch = $this.data('prefetch');
-          
-          opts['prefetch'] = prefetch;
-        }
-        
-        if($this.data('remote'))
-        {
-          var remote = $this.data('remote');
-          
-          opts['remote'] = remote;
-        }
-        
-        if($this.data('template'))
-        {
-          var template = $this.data('template');
-          
-          opts['template'] = template;
-          opts['engine'] = Hogan;
-        }
-        
-        $this.typeahead(opts);
-      });
-    }
-    
-    
     
     
     // Datepicker
@@ -400,9 +515,6 @@ var public_vars = public_vars || {};
       });
     }
     
-    
-    
-    
     // Timepicker
     if($.isFunction($.fn.timepicker))
     {
@@ -443,9 +555,6 @@ var public_vars = public_vars || {};
         }
       });
     }
-    
-    
-    
     
     // Colorpicker
     if($.isFunction($.fn.colorpicker))
@@ -497,83 +606,6 @@ var public_vars = public_vars || {};
         }
       });
     }
-    
-    
-    
-    
-    // Date Range Picker
-    if($.isFunction($.fn.daterangepicker))
-    {
-      $(".daterange").each(function(i, el)
-      {
-        // Change the range as you desire
-        var ranges = {
-          'Today': [moment(), moment()],
-          'Yesterday': [moment().subtract('days', 1), moment().subtract('days', 1)],
-          'Last 7 Days': [moment().subtract('days', 6), moment()],
-          'Last 30 Days': [moment().subtract('days', 29), moment()],
-          'This Month': [moment().startOf('month'), moment().endOf('month')],
-          'Last Month': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
-        };
-        
-        var $this = $(el),
-          opts = {
-            format: attrDefault($this, 'format', 'MM/DD/YYYY'),
-            timePicker: attrDefault($this, 'timePicker', false),
-            timePickerIncrement: attrDefault($this, 'timePickerIncrement', false),
-            separator: attrDefault($this, 'separator', ' - '),
-          },
-          min_date = attrDefault($this, 'minDate', ''),
-          max_date = attrDefault($this, 'maxDate', ''),
-          start_date = attrDefault($this, 'startDate', ''),
-          end_date = attrDefault($this, 'endDate', '');
-        
-        if($this.hasClass('add-ranges'))
-        {
-          opts['ranges'] = ranges;
-        } 
-          
-        if(min_date.length)
-        {
-          opts['minDate'] = min_date;
-        }
-          
-        if(max_date.length)
-        {
-          opts['maxDate'] = max_date;
-        }
-          
-        if(start_date.length)
-        {
-          opts['startDate'] = start_date;
-        }
-          
-        if(end_date.length)
-        {
-          opts['endDate'] = end_date;
-        }
-        
-        
-        $this.daterangepicker(opts, function(start, end)
-        {
-          var drp = $this.data('daterangepicker');
-          
-          if($this.is('[data-callback]'))
-          {
-            //daterange_callback(start, end);
-            callback_test(start, end);
-          }
-          
-          if($this.hasClass('daterange-inline'))
-          {
-            $this.find('span').html(start.format(drp.format) + drp.separator + end.format(drp.format));
-          }
-        });
-      });
-    }
-    
-    
-    
     
     // Input Mask
     if($.isFunction($.fn.inputmask))
@@ -647,9 +679,6 @@ var public_vars = public_vars || {};
         $this.inputmask(mask, opts);
       });
     }
-    
-    
-    
     
     // Form Validation
     if($.isFunction($.fn.validate))
@@ -741,9 +770,6 @@ var public_vars = public_vars || {};
       });
     }
     
-    
-    
-    
     // Replaced File Input
     $("input.file2[type=file]").each(function(i, el)
     {
@@ -753,26 +779,17 @@ var public_vars = public_vars || {};
       $this.bootstrapFileInput(label);
     });
     
-    
-    
-    
     // Jasny Bootstrap | Fileinput
     if($.isFunction($.fn.fileinput))
     {
       $(".fileinput").fileinput()
     }
     
-    
-    
-    
     // Multi-select
     if($.isFunction($.fn.multiSelect))
     {
       $(".multi-select").multiSelect();
     }
-    
-    
-    
     
     // Form Wizard
     if($.isFunction($.fn.bootstrapWizard))
@@ -821,26 +838,6 @@ var public_vars = public_vars || {};
       });
     }
     
-    
-    
-    
-    // Wysiwyg Editor
-    if($.isFunction($.fn.wysihtml5))
-    {
-      $(".wysihtml5").each(function(i, el)
-      {
-        var $this = $(el),
-          stylesheets = attrDefault($this, 'stylesheet-url', '')
-        
-        $(".wysihtml5").wysihtml5({
-          stylesheets: stylesheets.split(',')
-        });
-      });
-    }
-    
-    // Checkbox/Radio Replacement
-    replaceCheckboxes();
-    
     // Modal Static
     public_vars.$body.on('click', '.modal[data-backdrop="static"]', function(ev)
     {
@@ -854,8 +851,7 @@ var public_vars = public_vars || {};
       tt.play();
     });
     
-    
-    // spinner
+    // Added on v1.1.4
     $(".input-spinner").each(function(i, el)
     {
       var $this = $(el),
@@ -908,7 +904,46 @@ var public_vars = public_vars || {};
     });
     
     
+    // Search Results Tabs
+    var $search_results_env = $(".search-results-env");
     
+    if($search_results_env.length)
+    {
+      var $sr_nav_tabs = $search_results_env.find(".nav-tabs li"),
+        $sr_tab_panes = $search_results_env.find('.search-results-panes .search-results-pane');
+      
+      $sr_nav_tabs.find('a').on('click', function(ev)
+      {
+        ev.preventDefault();
+        
+        var $this = $(this),
+          $tab_pane = $sr_tab_panes.filter($this.attr('href'));
+        
+        $sr_nav_tabs.not($this.parent()).removeClass('active');
+        $this.parent().addClass('active');
+        
+        $sr_tab_panes.not($tab_pane).fadeOut('fast', function()
+        {
+          $tab_pane.fadeIn('fast');
+        });
+      });
+    }
+    // End of: Added on v1.1.4
+    
+    // Fit main content height
+    fit_main_content_height();
+    
+    var fmch = 0,
+      fmch_fn = function(){
+      
+      window.clearTimeout(fmch);
+      fit_main_content_height();
+      
+      fmch = setTimeout(fmch_fn, 800);
+    };
+    
+    fmch_fn();
+
     
     // Apply Page Transition
     onPageAppear(init_page_transitions);
@@ -925,20 +960,158 @@ var public_vars = public_vars || {};
     wid = setTimeout(trigger_resizable, 200);
   });
 
-  // select all
-  $('input.select-all').each(function(){
-      var checkboxes = $(this).closest('form').find(':checkbox').not($(this));
-      if($(this).prop('checked')) {
-        checkboxes.prop('checked', true);
-      } else {
-        checkboxes.prop('checked', false);
-      }
-  });
+  
   
 })(jQuery, window);
 
 
 /* Functions */
+function fit_main_content_height()
+{
+  if(public_vars.$sidebarMenu.length && public_vars.$sidebarMenu.hasClass('fixed') == false)
+  {
+    public_vars.$sidebarMenu.css('min-height', '');
+    public_vars.$mainContent.css('min-height', '');
+    
+    if(isxs())
+    { 
+      if(typeof reset_mail_container_height != 'undefined')
+        reset_mail_container_height();
+      return;
+      
+      if(typeof fit_calendar_container_height != 'undefined')
+        reset_calendar_container_height();
+      return;
+    }
+    
+    var sm_height  = public_vars.$sidebarMenu.outerHeight(),
+      mc_height  = public_vars.$mainContent.outerHeight(),
+      doc_height = $(document).height(),
+      win_height = $(window).height();
+    
+    if(win_height > doc_height)
+    {
+      doc_height = win_height;
+    }
+      
+    
+    public_vars.$mainContent.css('min-height', doc_height);
+    public_vars.$sidebarMenu.css('min-height', doc_height);
+    //public_vars.$chat.css('min-height', doc_height);
+    
+    if(typeof fit_mail_container_height != 'undefined')
+      fit_mail_container_height();
+    
+    if(typeof fit_calendar_container_height != 'undefined')
+      fit_calendar_container_height();
+  }
+}
+
+
+// Sidebar Menu Setup
+function setup_sidebar_menu()
+{
+  var $items_with_submenu   = public_vars.$sidebarMenu.find('li:has(ul)'),
+    submenu_options     = {
+      submenu_open_delay: 0.5,
+      submenu_open_easing: Sine.easeInOut,
+      submenu_opened_class: 'opened'
+    },
+    root_level_class    = 'root-level',
+    is_multiopen      = public_vars.$mainMenu.hasClass('multiple-expanded');
+  
+  public_vars.$mainMenu.find('> li').addClass(root_level_class);
+  
+  $items_with_submenu.each(function(i, el)
+  {
+    var $this = $(el),
+      $link = $this.find('> a'),
+      $submenu = $this.find('> ul');
+    
+    $this.addClass('has-sub');
+    
+    $link.click(function(ev)
+    {
+      ev.preventDefault();
+      
+      if( ! is_multiopen && $this.hasClass(root_level_class))
+      {
+        var close_submenus = public_vars.$mainMenu.find('.' + root_level_class).not($this).find('> ul');
+        
+        close_submenus.each(function(i, el)
+        {
+          var $sub = $(el);
+          menu_do_collapse($sub, $sub.parent(), submenu_options);
+        });
+      }
+      
+      if( ! $this.hasClass(submenu_options.submenu_opened_class))
+      {
+        var current_height;
+        
+        if( ! $submenu.is(':visible'))
+        {
+          menu_do_expand($submenu, $this, submenu_options);
+        }
+      }
+      else
+      {
+        menu_do_collapse($submenu, $this, submenu_options);
+      }
+      
+      fit_main_content_height();
+    });
+
+  });
+  
+  // Open the submenus with "opened" class
+  public_vars.$mainMenu.find('.'+submenu_options.submenu_opened_class+' > ul').addClass('visible');
+  
+  // Well, somebody may forgot to add "active" for all inhertiance, but we are going to help you (just in case) - we do this job for you for free :P!
+  if(public_vars.$mainMenu.hasClass('auto-inherit-active-class'))
+  {
+    menu_set_active_class_to_parents( public_vars.$mainMenu.find('.active') );
+  }
+  
+  // Search Input
+  var $search_input = public_vars.$mainMenu.find('#search input[type="text"]'),
+    $search_el = public_vars.$mainMenu.find('#search');
+    
+  public_vars.$mainMenu.find('#search form').submit(function(ev)
+  {
+    var is_collapsed = public_vars.$pageContainer.hasClass('sidebar-collapsed');
+    
+    if(is_collapsed)
+    {
+      if($search_el.hasClass('focused') == false)
+      {
+        ev.preventDefault();
+        $search_el.addClass('focused');
+        
+        $search_input.focus();
+        
+        return false;
+      }
+    }
+  });
+  
+  $search_input.on('blur', function(ev)
+  {
+    var is_collapsed = public_vars.$pageContainer.hasClass('sidebar-collapsed');
+    
+    if(is_collapsed)
+    {
+      $search_el.removeClass('focused');
+    }
+  });
+  
+  
+  // Collapse Icon (mobile device visible)
+  var show_hide_menu = $('');
+  
+  public_vars.$sidebarMenu.find('.logo-env').append(show_hide_menu);
+}
+
 
 function menu_do_expand($submenu, $this, options)
 {
@@ -972,6 +1145,7 @@ function menu_do_expand($submenu, $this, options)
   TweenMax.to($submenu, options.submenu_open_delay, {css: props_to, ease: options.submenu_open_easing, onComplete: function()
   {
     $submenu.attr('style', '');
+    fit_main_content_height();
   }});
 }
 
@@ -988,6 +1162,7 @@ function menu_do_collapse($submenu, $this, options)
   TweenMax.to($submenu, options.submenu_open_delay, {css: {height: 0, opacity: .2}, ease: options.submenu_open_easing, onComplete: function()
   {
     $submenu.removeClass('visible');
+    fit_main_content_height();
   }});
 }
 
@@ -1006,139 +1181,9 @@ function menu_set_active_class_to_parents($active_element)
 }
 
 
-
-// Horizontal Menu Setup
-function setup_horizontal_menu()
-{
-  var $nav_bar_menu     = public_vars.$horizontalMenu.find('.navbar-nav'),
-    $items_with_submenu   = $nav_bar_menu.find('li:has(ul)'),
-    $search         = public_vars.$horizontalMenu.find('li#search'),
-    $search_input     = $search.find('.search-input'),
-    $search_submit      = $search.find('form'),
-    root_level_class    = 'root-level'
-    is_multiopen      = $nav_bar_menu.hasClass('multiple-expanded'),
-    submenu_options     = {
-      submenu_open_delay: 0.5,
-      submenu_open_easing: Sine.easeInOut,
-      submenu_opened_class: 'opened'
-    };
-  
-  $nav_bar_menu.find('> li').addClass(root_level_class);
-  
-  $items_with_submenu.each(function(i, el)
-  {
-    var $this = $(el),
-      $link = $this.find('> a'),
-      $submenu = $this.find('> ul');
-    
-    $this.addClass('has-sub');
-    
-    setup_horizontal_menu_hover($this, $submenu);
-    
-    // xs devices only
-    $link.click(function(ev)
-    {
-      if(isxs())
-      {
-        ev.preventDefault();
-        
-        if( ! is_multiopen && $this.hasClass(root_level_class))
-        {
-          var close_submenus = $nav_bar_menu.find('.' + root_level_class).not($this).find('> ul');
-          
-          close_submenus.each(function(i, el)
-          {
-            var $sub = $(el);
-            menu_do_collapse($sub, $sub.parent(), submenu_options);
-          });
-        }
-        
-        if( ! $this.hasClass(submenu_options.submenu_opened_class))
-        {
-          var current_height;
-          
-          if( ! $submenu.is(':visible'))
-          {
-            menu_do_expand($submenu, $this, submenu_options);
-          }
-        }
-        else
-        {
-          menu_do_collapse($submenu, $this, submenu_options);
-        }
-        
-      }
-    });
-  });
-  
-  
-  // Search Input
-  if($search.hasClass('search-input-collapsed'))
-  {
-    $search_submit.submit(function(ev)
-    {
-      if($search.hasClass('search-input-collapsed'))
-      {
-        ev.preventDefault();
-        $search.removeClass('search-input-collapsed');
-        $search_input.focus();
-        
-        return false;
-      }
-    });
-    
-    $search_input.on('blur', function(ev)
-    {
-      $search.addClass('search-input-collapsed');
-    });
-  }
-}
-
 jQuery(public_vars, {
   hover_index: 4
 });
-
-function setup_horizontal_menu_hover($item, $sub)
-{
-  var del = 0.5,
-    trans_x = -10,
-    ease = Quad.easeInOut;
-  
-  TweenMax.set($sub, {css: {autoAlpha: 0, transform: "translateX("+trans_x+"px)"}});
-  
-  $item.hoverIntent({
-    over: function()
-    {
-      if(isxs())
-        return false;
-      
-      if($sub.css('display') == 'none')
-      {
-        $sub.css({display: 'block', visibility: 'hidden'});
-      }
-      
-      $sub.css({zIndex: ++public_vars.hover_index});
-      TweenMax.to($sub, del, {css: {autoAlpha: 1, transform: "translateX(0px)"}, ease: ease});
-    },
-    
-    out: function()
-    {
-      if(isxs())
-        return false;
-        
-      TweenMax.to($sub, del, {css: {autoAlpha: 0, transform: "translateX("+trans_x+"px)"}, ease: ease, onComplete: function()
-      {
-        TweenMax.set($sub, {css: {transform: "translateX("+trans_x+"px)"}});
-        $sub.css({display: 'none'});
-      }});
-    },
-    
-    timeout: 300,
-    interval: 50
-  });
-  
-}
-
 
 
 // Block UI Helper
@@ -1228,54 +1273,6 @@ function setCurrentProgressTab($rootwizard, $nav, $tab, $progress, index)
   });*/
 }
 
-
-// Replace Checkboxes
-function replaceCheckboxes()
-{
-  $(".checkbox-replace:not(.neon-cb-replacement), .radio-replace:not(.neon-cb-replacement)").each(function(i, el)
-  {
-    var $this = $(el),
-      $input = $this.find('input'),
-      $wrapper = $('<label class="cb-wrapper" />'),
-      $checked = $('<div class="checked" />'),
-      checked_class = 'checked',
-      is_radio = $input.is('[type="radio"]'),
-      $related,
-      name = $input.attr('name');
-    
-
-    $this.addClass('neon-cb-replacement');
-    
-    
-    $input.wrap($wrapper);
-    
-    $wrapper = $input.parent();
-    
-    $wrapper.append($checked).next('label').on('click', function(ev)
-    { 
-      $wrapper.click();
-    });
-    
-    $input.on('change', function(ev)
-    { 
-      if(is_radio)
-      {
-        $(".neon-cb-replacement input[type=radio][name='"+name+"']").closest('.neon-cb-replacement').removeClass(checked_class);
-      }
-      
-      if($input.is(':disabled'))
-      {
-        $wrapper.addClass('disabled');
-      }
-      
-      $this[$input.is(':checked') ? 'addClass' : 'removeClass'](checked_class);
-      
-    }).trigger('change');
-  });
-}
-
-
-
 // Scroll to Bottom
 function scrollToBottom($el)
 {
@@ -1323,6 +1320,7 @@ function enableXOverflow()
 // Page Transitions
 function init_page_transitions()
 {
+  fit_main_content_height();
   
   var transitions = ['page-fade', 'page-left-in', 'page-right-in', 'page-fade-only'];
   

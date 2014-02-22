@@ -19,7 +19,42 @@ jQuery.extend(public_vars, {
 
 /* Main Function that will be called each time when the screen breakpoint changes */
 function resizable(breakpoint)
-{	
+{
+	var sb_with_animation;
+	
+	
+	// Large Screen Specific Script
+	if(is('largescreen'))
+	{
+		sb_with_animation = public_vars.$sidebarMenu.find(".sidebar-collapse-icon").hasClass('with-animation') || public_vars.$sidebarMenu.hasClass('with-animation');
+		
+		if(public_vars.$sidebarMenu.data('initial-state') == 'open')
+		{
+			Cookies.get('sidebar_status') == 'hide' || show_sidebar_menu(sb_with_animation);
+		}
+		else
+		{
+			Cookies.get('sidebar_status') == 'show' || hide_sidebar_menu(sb_with_animation);
+		}
+	}
+	
+	
+	// Tablet or larger screen
+	if(ismdxl())
+	{
+		public_vars.$mainMenu.attr('style', '');
+	}
+	
+	
+	// Tablet Screen Specific Script
+	if(is('tabletscreen'))
+	{
+		sb_with_animation = public_vars.$sidebarMenu.find(".sidebar-collapse-icon").hasClass('with-animation') || public_vars.$sidebarMenu.hasClass('with-animation');
+		
+		hide_sidebar_menu(sb_with_animation);
+	}
+	
+	
 	// Tablet Screen Specific Script
 	if(isxs())
 	{
@@ -29,6 +64,10 @@ function resizable(breakpoint)
 	
 	// Trigger Event
 	$(window).trigger('neon.resize');
+	
+	
+	// Fit main content height
+	fit_main_content_height();
 }
 
 

@@ -5,13 +5,16 @@
 */
 
 body {
-	font-family: "Noto Sans","Microsoft Yahei",sans-serif;
+	font-family: "Helvetica Neue",Helvetica,"Noto Sans","Microsoft Yahei",sans-serif,Arial,sans-serif;
 }
 .inline-block {display: inline-block;}
 
+/*logo*/
+.logo a h1 {color: #fff; margin: 0;}
+
 h2 ~ button.btn {margin-left: 10px; margin-bottom: 10px;}
 
-.navbar {min-height: 40px;}
+.page-container .sidebar-menu {position: fixed;top:0;}
 
 /* overwrite */
 .form-horizontal .form-group {

@@ -10,6 +10,7 @@
 */
 
 var public_vars = public_vars || {};
+var domain = window.location.host;
 
 
 // ! Sidebar Menu Options
@@ -24,6 +25,7 @@ jQuery.extend(public_vars, {
 
 function show_sidebar_menu(with_animation)
 {
+	Cookies.set('aa', 'bb', {domain:domain, expires:3600});
 	if(isxs())
 		return;
 		
@@ -130,7 +132,7 @@ function show_sidebar_menu(with_animation)
 				
 				
 			}, public_vars.sidebarTransitionTime/2);
-			
+			Cookies.set('sidebar_status', 'show', {domain: domain, expires: 3600 * 24 * 365});
 		}, public_vars.sidebarTransitionTime/2);
 	}
 }
@@ -228,7 +230,7 @@ function hide_sidebar_menu(with_animation)
 			public_vars.$pageContainer.removeClass(public_vars.sidebarOnTransitionClass).removeClass(public_vars.sidebarOnHideTransitionClass);
 			
 			fit_main_content_height();
-			
+			Cookies.set('sidebar_status', 'hide', {domain: domain, expires: 3600 * 24 * 365});
 		}, public_vars.sidebarTransitionTime);
 	}
 }

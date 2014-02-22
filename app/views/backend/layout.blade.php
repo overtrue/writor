@@ -247,6 +247,16 @@
         </div>
       </div>
       <hr />
+      @if(count($errors->all()))
+      <div class="tips text-danger">
+          <i class="pull-right">✕</i>
+          <ul>
+          @foreach($errors->all('<li class="pad-y-5">:message</li>') as $error)
+              {{$error}}
+          @endforeach
+          </ul>
+      </div>
+      @endif
       <ol class="breadcrumb bc-3">
         <li>
           <a href="http://themes.laborator.co/neon/dashboard/main/">

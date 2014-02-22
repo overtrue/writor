@@ -7,13 +7,13 @@
 body {
 	font-family: "Helvetica Neue",Helvetica,"Noto Sans","Microsoft Yahei",sans-serif,Arial,sans-serif;
 }
+
 .inline-block {display: inline-block;}
 
-/*logo*/
+/* logo */
 .logo a h1 {color: #fff; margin: 0;}
 
-h2 ~ button.btn {margin-left: 10px; margin-bottom: 10px;}
-
+/* 边栏固定 */
 .page-container .sidebar-menu {position: fixed;top:0;}
 
 /* overwrite */
@@ -21,5 +21,55 @@ h2 ~ button.btn {margin-left: 10px; margin-bottom: 10px;}
     padding-bottom: 5px;
     padding-top: 5px;
     margin:0;
+}
+
+/* tips */
+div.tips {
+  margin: 2px 0;
+  padding: 5px 20px;
+  border-left: 3px solid #eeeeee;
+}
+div.tips a.pull-right {
+  font-size: 12px;
+  margin-right: -10px;
+  line-height: 20px;
+}
+div.tips ul {
+    margin-left: -30px;
+    margin-bottom: 0;
+}
+
+div.tips i {
+    float: right !important;
+    font-style: normal;
+}
+
+div.tips h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+div.tips p:last-child {
+  margin-bottom: 0;
+}
+div.text-danger {
+  border-color: #eed3d7;
+  background-color: #fdf7f7;
+}
+div.text-danger h4 {
+  color: #b94a48;
+}
+div.text-warning {
+  border-color: #faebcc;
+  background-color: #faf8f0;
+}
+div.text-warning h4 {
+  color: #8a6d3b;
+}
+div.text-info {
+  border-color: #bce8f1;
+  background-color: #f4f8fa;
+}
+div.text-info h4 {
+  color: #34789a;
 }
 

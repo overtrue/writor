@@ -1,6 +1,7 @@
 <?php namespace Backend;
 
 use \DB;
+use \Tree;
 use \View;
 use \Term;
 use \Input;
@@ -18,8 +19,12 @@ class CategoryController extends BaseController {
      */
     public function getAll()
     {
-        $categorys = TermTaxonomy::category()->orderBy('parent')->orderBy('id')->get();
-        return View::make('backend.pages.category-all')->withCategorys($categorys);
+        $categorys = TermTaxonomy::category()->with('term')->orderBy('parent')->orderBy('id')->get();
+        $categoryTree = Tree::make($categorys->toArray(), array('id' => 'term_id'));
+
+        return View::make('backend.pages.category-all')
+                     ->withCategorys($categorys)
+                     ->with('categoryTree', $categoryTree);
     }
 
     /**

@@ -52,14 +52,14 @@
                 </thead>
 
                 <tbody>
-                    @foreach($categorys as $category)
+                    @foreach($categoryTree as $category)
                     <tr>
-                        <td><input type="checkbox" value="{{$category->term_id}}"></td>
-                        <td>{{$category->term_id}}</td>
-                        <td>{{$category->term->name}}</td>
-                        <td>{{$category->description}}</td>
-                        <td>{{$category->term->slug}}</td>
-                        <td>{{$category->count}}</td>
+                        <td><input type="checkbox" value="{{$category['term_id']}}"></td>
+                        <td>{{ $category['term_id'] }}</td>
+                        <td>{{ $category['icon'] . "  " . $category['term']['name'] }}</td>
+                        <td>{{ $category['description'] }}</td>
+                        <td>{{ $category['term']['slug'] }}</td>
+                        <td>{{ $category['count'] }}</td>
                     </tr>
                     @endforeach
                 </tbody>

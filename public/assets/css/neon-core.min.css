@@ -2748,7 +2748,6 @@ input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"
 .page-container .sidebar-menu #main-menu li {
   position: relative;
   margin: 0;
-  font-size: 12px;
   border-bottom: 1px solid rgba(69,74,84,0.7)
 }
 
@@ -3193,7 +3192,7 @@ input[type="submit"].btn-block,input[type="reset"].btn-block,input[type="button"
   position: relative;
   float: left;
   width: 100%;
-  padding: 20px;
+  padding: 10px 20px;
   z-index: 2;
   background: #fff;
   -webkit-box-sizing: border-box;

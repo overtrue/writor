@@ -70,7 +70,7 @@
                     </div>
                 </form>
                 <div class="login-bottom-links">
-                    <a href="{{asset('extra/forgot-password/')}}" class="link">忘记密码?</a>
+                    <a href="{{url('/admin/auth/remind')}}" class="link">忘记密码?</a>
                     <br />
                     <a href="http://github.com/joychao/writor" target="_blank">关于writor</a>
                     -

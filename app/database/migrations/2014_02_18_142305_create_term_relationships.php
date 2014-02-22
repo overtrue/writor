@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TermRelationships extends Migration {
+class CreateTermRelationships extends Migration {
 
 	/**
 	 * Run the migrations.

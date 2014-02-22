@@ -1,10 +1,10 @@
 <?php
 
 class Term extends Eloquent {
-    //类型
-    const TYPE_CATEGORY = 'category';
-    const TYPE_TAG      = 'tag';
 
-    protected $table = 'terms';
+    protected $table    = 'terms';
+    public  $timestamps = false;
+    protected $fillable = array('name', 'slug');
+
     
 }

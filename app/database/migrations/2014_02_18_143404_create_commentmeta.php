@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Usermeta extends Migration {
+class CreateCommentmeta extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,12 +13,12 @@ class Usermeta extends Migration {
 	public function up()
 	{
 		Schema::dropIfExists('postmeta');
-		Schema::create('usermeta', function(Blueprint $table)
+		Schema::create('commentmeta', function(Blueprint $table)
 		{
 			$table->increments('id');//自增唯一ID
-		    $table->integer('user_id')->index();//对应用户ID
-		    $table->string('meta_key')->index();//键名
-		    $table->text('meta_value');//键值
+			$table->integer('comment_id')->index();//对应评论ID
+			$table->integer('meta_key')->index();//键名
+			$table->longText('meta_value');//键值
 		});
 	}
 
@@ -29,7 +29,7 @@ class Usermeta extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('usermeta');
+		Schema::dropIfExists('commentmeta');
 	}
 
 }

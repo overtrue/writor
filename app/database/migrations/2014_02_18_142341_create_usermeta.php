@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Postmeta extends Migration {
+class CreateUsermeta extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,12 +13,12 @@ class Postmeta extends Migration {
 	public function up()
 	{
 		Schema::dropIfExists('postmeta');
-		Schema::create('postmeta', function(Blueprint $table)
+		Schema::create('usermeta', function(Blueprint $table)
 		{
 			$table->increments('id');//自增唯一ID
-			$table->integer('post_id')->index();//对应文章ID
-			$table->string('meta_key')->index();//键名
-			$table->text('meta_value');//键值
+		    $table->integer('user_id')->index();//对应用户ID
+		    $table->string('meta_key')->index();//键名
+		    $table->text('meta_value');//键值
 		});
 	}
 
@@ -29,7 +29,7 @@ class Postmeta extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('postmeta');
+		Schema::dropIfExists('usermeta');
 	}
 
 }

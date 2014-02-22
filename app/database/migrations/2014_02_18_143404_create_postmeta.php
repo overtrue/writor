@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Options extends Migration {
+class CreatePostmeta extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -13,11 +13,12 @@ class Options extends Migration {
 	public function up()
 	{
 		Schema::dropIfExists('postmeta');
-		Schema::create('options', function(Blueprint $table)
+		Schema::create('postmeta', function(Blueprint $table)
 		{
 			$table->increments('id');//自增唯一ID
-			$table->string('option_name', 64)->index();//键名
-			$table->text('option_value');//键值
+			$table->integer('post_id')->index();//对应文章ID
+			$table->string('meta_key')->index();//键名
+			$table->text('meta_value');//键值
 		});
 	}
 
@@ -28,7 +29,7 @@ class Options extends Migration {
 	 */
 	public function down()
 	{
-		Schema::dropIfExists('options');
+		Schema::dropIfExists('postmeta');
 	}
 
 }

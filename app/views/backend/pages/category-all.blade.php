@@ -7,25 +7,26 @@
                 <div class="panel-body">
                     <form action="{{url('/admin/category/create')}}" method="post" accept-charset="utf-8" class="">
                         <div class="form-group">
-                            <label class="control-label">标题</label>
-                            <input type="text" name="title" class="form-control" placeholder="">
+                            <label class="control-label">名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="" value="{{Input::old('name')}}">
                         </div>
                         <div class="form-group">
                             <label class="control-label">别名</label>
-                            <input type="text" name="alias" class="form-control" placeholder="">
+                            <input type="text" name="slug" class="form-control" placeholder="" value="{{Input::old('slug')}}">
                             <p class="help-block">“别名”是在URL中使用的别称，它可以令URL更美观。通常使用小写，只能包含字母，数字和连字符（-）。</p>
                         </div>
                         <div class="form-group">
                             <label class="control-label">父分类</label>
                             <select name="parent_id" class="selectboxit">
                                 <option value="0">无</option>
-                                <option value="">Hello</option>
-                                <option value="">world</option>
+                                @foreach($categorys as $category)
+                                <option value="{{$category->term_id}}" @if(Input::old('parent_id') == $category->term_id) selected @endif>{{$category->term->name}}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label class="control-label">分类描述</label>
-                            <textarea name="description" class="form-control" placeholder=""></textarea>
+                            <textarea name="description" class="form-control" placeholder="">{{Input::old('description')}}</textarea>
                             <p class="help-block">描述只会在一部分主题中显示。</p>
                         </div>
                         <div class="form-group">
@@ -42,6 +43,7 @@
                 <thead>
                     <tr>
                         <th><input type="checkbox" class="select-all"></th>
+                        <th>ID</th>
                         <th>分类名</th>
                         <th>描述</th>
                         <th>别名</th>
@@ -50,43 +52,16 @@
                 </thead>
 
                 <tbody>
+                    @foreach($categorys as $category)
                     <tr>
-                        <td><input type="checkbox"></td>
-                        <td>分类1</td>
-                        <td>这是分类1的描述</td>
-                        <td>cate1</td>
-                        <td>20</td>
+                        <td><input type="checkbox" value="{{$category->term_id}}"></td>
+                        <td>{{$category->term_id}}</td>
+                        <td>{{$category->term->name}}</td>
+                        <td>{{$category->description}}</td>
+                        <td>{{$category->term->slug}}</td>
+                        <td>{{$category->count}}</td>
                     </tr>
-
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>分类2</td>
-                        <td>这是分类2的描述</td>
-                        <td>cate2</td>
-                        <td>17</td>
-                    </tr>
-
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>分类3</td>
-                        <td>这是分类3的描述</td>
-                        <td>cate3</td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>-- 子分类1</td>
-                        <td>这是子分类1的描述</td>
-                        <td>cate4</td>
-                        <td>5</td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox"></td>
-                        <td>-- 子分类2</td>
-                        <td>这是子分类2的描述</td>
-                        <td>cate5</td>
-                        <td>9</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

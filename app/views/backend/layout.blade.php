@@ -248,7 +248,7 @@
       @if(Session::has('message'))
       <div class="form-group">
         <div class="tips {{ !empty(Session::get('color')) ? 'text-' . Session::get('color') : 'text-info' }}">
-        <a href="#" class="pull-right">✕</a>
+        <i class="pull-right">✕</i>
         {{ Session::get('message') }}
         </div>
       </div>

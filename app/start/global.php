@@ -79,3 +79,5 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+require app_path().'/listener.php';
+require app_path().'/common.php';

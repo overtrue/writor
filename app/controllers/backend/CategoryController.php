@@ -1,9 +1,12 @@
 <?php namespace Backend;
 
+use \DB;
 use \View;
+use \Term;
 use \Input;
 use \Redirect;
 use \Validator;
+use \TermTaxonomy;
 
 class CategoryController extends BaseController {
 
@@ -15,7 +18,8 @@ class CategoryController extends BaseController {
      */
     public function getAll()
     {
-        return View::make('backend.pages.category-all');
+        $categorys = TermTaxonomy::category()->orderBy('parent')->orderBy('id')->get();
+        return View::make('backend.pages.category-all')->withCategorys($categorys);
     }
 
     /**
@@ -29,7 +33,7 @@ class CategoryController extends BaseController {
     {
         $rules = array(
                   'name'      => 'required',
-                  'slug'      => 'regex:/^[a-z0-9_-]$/',
+                  'slug'      => 'regex:/^[a-zA-Z 0-9_-]+$/',
                   'parent_id' => 'integer',
                  );
         $validator = Validator::make(Input::all(), $rules);
@@ -37,7 +41,37 @@ class CategoryController extends BaseController {
             return Redirect::back()->withErrors($validator)->withInput();
         }
 
-        $category = Term::fill();
-        var_dump($category);
+        // 检测分类名
+        if (Term::whereName(Input::get('name'))->count()) {
+            return Redirect::back()->withMessage("分类 '" . Input::get('name')."' 已经存在！")
+                                   ->withColor('danger')
+                                   ->withInput(Input::all());
+        }
+        //检测别名
+        if (Term::whereSlug(Input::get('slug'))->count()) {
+            return Redirect::back()->withMessage("分类别名 '" . Input::get('slug')."' 已经存在！")
+                                   ->withColor('danger')
+                                   ->withInput(Input::all());
+        }
+
+        // 创建分类
+        $category = Term::create(Input::only(array('name', 'slug')));
+        $category->slug = str_replace(' ','', snake_case($category->slug));
+
+        //创建分类其它信息
+        DB::transaction(function() use ($category) {
+            $category->save();
+            $termTaxonomy              = new TermTaxonomy;
+            $termTaxonomy->term_id     = $category->id;
+            $termTaxonomy->taxonomy    = TermTaxonomy::TYPE_CATEGORY;
+            $termTaxonomy->description = Input::get('description');
+            $termTaxonomy->parent      = Input::get('parent_id');
+            $termTaxonomy->save();
+            if (!$termTaxonomy->id) {
+                $category->rollback();
+            }
+        });
+
+        return Redirect::back()->withMessage("分类 '$category->name' 添加成功！"); 
     }
 }

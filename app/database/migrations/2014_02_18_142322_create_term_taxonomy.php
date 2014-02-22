@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class TermTaxonomy extends Migration {
+class CreateTermTaxonomy extends Migration {
 
 	/**
 	 * Run the migrations.

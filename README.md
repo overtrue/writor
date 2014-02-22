@@ -10,6 +10,7 @@
 3. 修改数据库配置`app/config/database.php`
 4. 初始管理员的用户名为`admin`,密码为`123456`,你想修改可以在`app/database/seeds/UserTableSeeder.php`中修改初始人员信息再执行安装
 4. 安装数据库
+
     ```
     php artisan migrate #安装数据表结构
     php artisan db:seed #初始化管理员

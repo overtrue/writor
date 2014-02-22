@@ -12,6 +12,7 @@ class TermRelationships extends Migration {
 	 */
 	public function up()
 	{
+		Schema::dropIfExists('postmeta');
 		Schema::create('term_relationships', function(Blueprint $table)
 		{
 			$table->integer('object_id');//对应文章ID/链接ID

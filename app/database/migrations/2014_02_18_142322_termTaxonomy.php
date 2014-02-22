@@ -12,6 +12,7 @@ class TermTaxonomy extends Migration {
 	 */
 	public function up()
 	{
+		Schema::dropIfExists('postmeta');
 		Schema::create('term_taxonomy', function(Blueprint $table)
 		{
 			$table->increments('id');//分类方法ID

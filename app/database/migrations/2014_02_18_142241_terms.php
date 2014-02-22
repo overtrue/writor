@@ -12,6 +12,7 @@ class Terms extends Migration {
 	 */
 	public function up()
 	{
+		Schema::dropIfExists('postmeta');
 		Schema::create('terms', function(Blueprint $table)
 		{
 			$table->increments('id');//分类ID

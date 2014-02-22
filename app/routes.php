@@ -11,11 +11,20 @@
 |
 */
 
-Route::get('/', function()
+Route::get('/{admin}?', function()
 {
 	return View::make('hello');
 });
 
-//backend
-Route::controller('/admin/post', '\\Backend\\PostController');
-Route::controller('/admin/category', '\\Backend\\CategoryController');
+//登录与登出
+Route::controller('admin/auth', '\\Backend\\AuthController');
+
+//需要登录的路由
+Route::group(array('prefix' => '/', 'before' => 'auth'), function(){
+    
+    //backend
+    Route::controller('admin/post', '\\Backend\\PostController');
+    Route::controller('admin/category', '\\Backend\\CategoryController');
+
+});
+

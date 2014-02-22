@@ -29,10 +29,8 @@
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
-
-  <!-- TS1392191283: Neon - Responsive Admin Template created by Laborator -->
 </head>
-<body class="page-body page-fade">
+<body class="page-body">
   <div class="page-container @if(isset($_COOKIE['sidebar_status']) && $_COOKIE['sidebar_status'] == 'hide') sidebar-collapsed @endif">
     <div class="sidebar-menu">
       <header class="logo-env">
@@ -247,6 +245,14 @@
         </div>
       </div>
       <hr />
+      @if(Session::has('message'))
+      <div class="form-group">
+        <div class="tips {{ !empty(Session::get('color')) ? 'text-' . Session::get('color') : 'text-info' }}">
+        <a href="#" class="pull-right">✕</a>
+        {{ Session::get('message') }}
+        </div>
+      </div>
+      @endif
       @if(count($errors->all()))
       <div class="tips text-danger">
           <i class="pull-right">✕</i>

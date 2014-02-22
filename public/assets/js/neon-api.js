@@ -25,7 +25,6 @@ jQuery.extend(public_vars, {
 
 function show_sidebar_menu(with_animation)
 {
-	Cookies.set('aa', 'bb', {domain:domain, expires:3600});
 	if(isxs())
 		return;
 		
@@ -59,7 +58,6 @@ function show_sidebar_menu(with_animation)
 			$logo_env		 = public_vars.$sidebarMenu.find('.logo-env'),
 			$collapse_icon	 = $logo_env.find('.sidebar-collapse'),
 			$logo			 = $logo_env.find('.logo'),
-			$sidebar_ulink	 = public_vars.$sidebarUser.find('span, strong'),
 			
 			logo_env_padding = parseInt($logo_env.css('padding'), 10);
 		
@@ -172,7 +170,6 @@ function hide_sidebar_menu(with_animation)
 			$logo_env		 = public_vars.$sidebarMenu.find('.logo-env'),
 			$collapse_icon	 = $logo_env.find('.sidebar-collapse'),
 			$logo			 = $logo_env.find('.logo'),
-			$sidebar_ulink	 = public_vars.$sidebarUser.find('span, strong'),
 			
 			logo_env_padding = parseInt($logo_env.css('padding'), 10);
 			
@@ -205,9 +202,6 @@ function hide_sidebar_menu(with_animation)
 		
 		public_vars.$pageContainer.transit({paddingLeft: padding_left}, public_vars.sidebarTransitionTime);
 		
-		TweenMax.set($sidebar_ulink, {css: {opacity: 0}});
-		
-		
 		setTimeout(function()
 		{
 			// In the end do some stuff
@@ -220,7 +214,6 @@ function hide_sidebar_menu(with_animation)
 			.add($span_elements)
 			.add($collapse_icon)
 			.add($submenus)
-			.add($sidebar_ulink)
 			.add(public_vars.$mainMenu)
 			.attr('style', '');
 			
@@ -295,7 +288,6 @@ function rb_hide_sidebar_menu(with_animation)
 			$logo_env		 = public_vars.$sidebarMenu.find('.logo-env'),
 			$collapse_icon	 = $logo_env.find('.sidebar-collapse'),
 			$logo			 = $logo_env.find('.logo'),
-			$sidebar_ulink	 = public_vars.$sidebarUser.find('span, strong'),
 			
 			logo_env_padding = parseInt($logo_env.css('padding'), 10);
 			
@@ -340,7 +332,6 @@ function rb_hide_sidebar_menu(with_animation)
 				.add($span_elements)
 				.add($collapse_icon)
 				.add($submenus)
-				.add($sidebar_ulink)
 				.add(public_vars.$mainMenu)
 				.add($collapse_icon)
 				.attr('style', '');
@@ -382,7 +373,6 @@ function rb_show_sidebar_menu(with_animation)
 			$logo_env		 = public_vars.$sidebarMenu.find('.logo-env'),
 			$collapse_icon	 = $logo_env.find('.sidebar-collapse'),
 			$logo			 = $logo_env.find('.logo'),
-			$sidebar_ulink	 = public_vars.$sidebarUser.find('span, strong'),
 			
 			logo_env_padding = parseInt($logo_env.css('padding'), 10);
 		

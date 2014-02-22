@@ -11,7 +11,7 @@ body {
 .inline-block {display: inline-block;}
 
 /* logo */
-.logo a h1 {color: #fff; margin: 0;}
+.logo h1 {color: #fff; margin: 0;}
 
 /* 边栏固定 */
 .page-container .sidebar-menu {position: fixed;top:0;}
@@ -26,7 +26,7 @@ body {
 /* tips */
 div.tips {
   margin: 2px 0;
-  padding: 5px 20px;
+  padding: 8px 20px;
   border-left: 3px solid #eeeeee;
 }
 div.tips a.pull-right {
@@ -42,6 +42,7 @@ div.tips ul {
 div.tips i {
     float: right !important;
     font-style: normal;
+    cursor:default;
 }
 
 div.tips h4 {

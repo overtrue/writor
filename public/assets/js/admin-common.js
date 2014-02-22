@@ -25,7 +25,7 @@ var public_vars = public_vars || {};
     $(window).on('error', function(ev)
     { 
       // Do not let page without showing if JS fails somewhere
-      init_page_transitions();
+      //init_page_transitions();
     });
         
     // Sidebar Menu Setup
@@ -40,17 +40,12 @@ var public_vars = public_vars || {};
       
       toggle_sidebar_menu(with_animation);
     });
-    
-    
-    
-    
+
     // Mobile Sidebar Collapse icon
     public_vars.$sidebarMenu.find(".sidebar-mobile-menu a").on('click', function(ev)
     {
       ev.preventDefault();
-      
       var with_animation = $(this).hasClass('with-animation');
-      
       if(with_animation)
       {
         public_vars.$mainMenu.stop().slideToggle('normal', function()
@@ -64,18 +59,12 @@ var public_vars = public_vars || {};
       }
     });
     
-    
-    
     // Close Sidebar if Tablet Screen is visible
     public_vars.$sidebarMenu.data('initial-state', (public_vars.$pageContainer.hasClass('sidebar-collapsed') ? 'closed' : 'open'));
-    
     if(is('tabletscreen'))
     {
       hide_sidebar_menu(false);
     }
-  
-  
-  
   
     // NiceScroll
     if($.isFunction($.fn.niceScroll))
@@ -126,9 +115,6 @@ var public_vars = public_vars || {};
       }
     }
     
-    
-    
-    
     // Scrollable
     if($.isFunction($.fn.slimScroll))
     {
@@ -161,28 +147,21 @@ var public_vars = public_vars || {};
       });
     }
     
-    
-    
-    
     // Panels
-    
     // Added on v1.1.4 - Fixed collapsing effect with panel tables
     $(".panel-heading").each(function(i, el)
     {
       var $this = $(el),
         $body = $this.next('table');
-      
       $body.wrap('<div class="panel-body with-table"></div>');
-      
       $body = $this.next('.with-table').next('table');
       $body.wrap('<div class="panel-body with-table"></div>');
       
     });
     
     continueWrappingPanelTables();
+
     // End of: Added on v1.1.4
-    
-    
     $('body').on('click', '.panel > .panel-heading > .panel-options > a[data-rel="reload"]', function(ev)
     {
       ev.preventDefault();
@@ -196,16 +175,13 @@ var public_vars = public_vars || {};
       {
         unblockUI($this)
         $this.removeClass('reloading');
-        
       }, 900);
       
     }).on('click', '.panel > .panel-heading > .panel-options > a[data-rel="close"]', function(ev)
     {
       ev.preventDefault();
-      
       var $this = $(this),
         $panel = $this.closest('.panel');
-      
       var t = new TimelineLite({
         onComplete: function()
         {
@@ -248,8 +224,6 @@ var public_vars = public_vars || {};
     });
     
     
-    
-    
     // Data Toggle for Radio and Checkbox Elements
     $('[data-toggle="buttons-radio"]').each(function()
     {
@@ -280,21 +254,6 @@ var public_vars = public_vars || {};
         });
       });
     });
-    
-    $('[data-loading-text]').each(function(i, el) // Temporary for demo purpose only
-    {
-      var $this = $(el);
-      
-      $this.on('click', function(ev)
-      {
-        $this.button('loading');
-        
-        setTimeout(function(){ $this.button('reset'); }, 1800);
-      });
-    });
-    
-    
-    
     
     // Popovers and tooltips
     $('[data-toggle="popover"]').each(function(i, el)
@@ -337,8 +296,6 @@ var public_vars = public_vars || {};
       });
     });
 
-    
-    
     
     // jQuery Knob
     if($.isFunction($.fn.knob))
@@ -419,7 +376,6 @@ var public_vars = public_vars || {};
         
         //$this.select2("open");
       });
-      
       
       if($.isFunction($.fn.niceScroll))
       {
@@ -946,11 +902,20 @@ var public_vars = public_vars || {};
 
     
     // Apply Page Transition
-    onPageAppear(init_page_transitions);
+    //onPageAppear(init_page_transitions);
     
   });
-
-
+  
+  //tips
+  $('.tips i').click(function(){
+    $(this).parent().hide(600, function(){ $(this).remove()});
+  });
+  $('.tips').each(function(){
+    var _this = $(this);
+    setTimeout(function(){
+      _this.slideUp(800, function(){ $(this).remove() });
+    }, 20000);
+  });
 
   // Enable/Disable Resizable Event
   var wid = 0;

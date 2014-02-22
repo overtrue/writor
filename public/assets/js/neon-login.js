@@ -14,7 +14,6 @@ var neonLogin = neonLogin || {};
 	{
 		neonLogin.$container = $("#form_login");
 		
-		
 		// Login Form & Validation
 		neonLogin.$container.validate({
 			rules: {
@@ -31,22 +30,17 @@ var neonLogin = neonLogin || {};
 			highlight: function(element){
 				$(element).closest('.input-group').addClass('validate-has-error');
 			},
-			
-			
 			unhighlight: function(element)
 			{
 				$(element).closest('.input-group').removeClass('validate-has-error');
 			},
-			
 			submitHandler: function(ev)
 			{
 				/* 
 					Updated on v1.1.4
 					Login form now processes the login data, here is the file: data/sample-login-form.php
 				*/
-				
 				$(".login-page").addClass('logging-in'); // This will hide the login form and init the progress bar
-					
 					
 				// Hide Errors
 				$(".form-login-error").slideUp('fast');
@@ -61,7 +55,7 @@ var neonLogin = neonLogin || {};
 											
 					// Send data to the server
 					$.ajax({
-						url: baseurl + 'data/sample-login-form.php',
+						url: baseurl + '/admin/auth/login',
 						method: 'POST',
 						dataType: 'json',
 						data: {
@@ -70,7 +64,7 @@ var neonLogin = neonLogin || {};
 						},
 						error: function()
 						{
-							alert("An error occoured!");
+							alert("网络错误!");
 						},
 						success: function(response)
 						{
@@ -79,8 +73,7 @@ var neonLogin = neonLogin || {};
 															
 							// Form is fully completed, we update the percentage
 							neonLogin.setPercentage(100);
-							
-							
+
 							// We will give some time for the animation to finish, then execute the following procedures	
 							setTimeout(function()
 							{
@@ -102,7 +95,6 @@ var neonLogin = neonLogin || {};
 										{
 											redirect_url = response.redirect_url;
 										}
-										
 										window.location.href = redirect_url;
 									}, 400);
 								}
@@ -110,18 +102,12 @@ var neonLogin = neonLogin || {};
 							}, 1000);
 						}
 					});
-						
-					
 				}, 650);
 			}
 		});
 		
-		
-		
-		
 		// Lockscreen & Validation
 		var is_lockscreen = $(".login-page").hasClass('is-lockscreen');
-		
 		if(is_lockscreen)
 		{
 			neonLogin.$container = $("#form_lockscreen");
@@ -129,17 +115,14 @@ var neonLogin = neonLogin || {};
 			
 			neonLogin.$container.validate({
 				rules: {
-				
 					password: {
 						required: true
 					},
-					
 				},
 				
 				highlight: function(element){
 					$(element).closest('.input-group').addClass('validate-has-error');
 				},
-				
 				
 				unhighlight: function(element)
 				{
@@ -187,10 +170,6 @@ var neonLogin = neonLogin || {};
 		}
 		
 		
-		
-		
-		
-		
 		// Login Form Setup
 		neonLogin.$body = $(".login-page");
 		neonLogin.$login_progressbar_indicator = $(".login-progressbar-indicator h3");
@@ -212,7 +191,6 @@ var neonLogin = neonLogin || {};
 						neonLogin.$container.find('input:first').focus();
 						focus_set = true;
 					}
-					
 				}, 550);
 				
 			}, 0);
@@ -379,8 +357,6 @@ var neonLogin = neonLogin || {};
 			}
 			
 			drawProgress(0/100);
-			
-			
 			neonLogin.$lockscreen_progress_indicator.html('0%');
 			
 			ctx.restore();

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/{admin}?', function()
+Route::get('/', function()
 {
 	return View::make('hello');
 });
@@ -20,11 +20,12 @@ Route::get('/{admin}?', function()
 Route::controller('admin/auth', '\\Backend\\AuthController');
 
 //需要登录的路由
-Route::group(array('prefix' => '/', 'before' => 'auth'), function(){
+Route::group(array('prefix' => '/admin', 'before' => 'auth'), function(){
     
     //backend
-    Route::controller('admin/post', '\\Backend\\PostController');
-    Route::controller('admin/category', '\\Backend\\CategoryController');
+    Route::get('/', '\\Backend\\HomeController@index');
+    Route::controller('post', '\\Backend\\PostController');
+    Route::controller('category', '\\Backend\\CategoryController');
 
 });
 

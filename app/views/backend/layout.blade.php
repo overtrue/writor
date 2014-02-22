@@ -236,7 +236,7 @@
             </li>
             <li class="sep"></li>
             <li>
-              <a href="">
+              <a href="{{url('/admin/auth/logout')}}">
                 注销登录
                 <i class="entypo-logout right"></i>
               </a>

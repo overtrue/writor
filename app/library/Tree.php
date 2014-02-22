@@ -1,5 +1,28 @@
 <?php
 
+/**
+ * 根据id与父id调整数组顺序并加上级别符号
+ *
+ * Usage:
+ * <pre>
+ * $data = arra(
+ *          array('id' => 1, 'parend' => 0, 'name' => '分类1' ),
+ *          array('id' => 2, 'parend' => 0, 'name' => '分类2' ),
+ *          array('id' => 3, 'parend' => 2, 'name' => '分类21' ),
+ *          array('id' => 4, 'parend' => 3, 'name' => '分类211' ),
+ *         );
+ *
+ * $tree = Tree::make($data);
+ *
+ * output:
+ * $data = arra(
+ *          array('id' => 1, 'parend' => 0, 'name' => '分类1','level' => 0, 'head' => true,'tail' => false, 'icon' => ''),
+ *          array('id' => 2, 'parend' => 0, 'name' => '分类2','level' => 0, 'head' => false,'tail' => true, 'icon' => ''),
+ *          array('id' => 3, 'parend' => 2, 'name' => '分类21','level' => 1, 'head' => true,'tail' => false, 'icon' => '  ├'),
+ *          array('id' => 4, 'parend' => 3, 'name' => '分类211','level' => 2, 'head' => false,'tail' => true, 'icon' => '  └'),
+ *         );
+ * </pre>
+ */
 class Tree {
 
     private static $level  = -1;
@@ -49,8 +72,8 @@ class Tree {
     {
         self::$keys = array_merge(self::$keys, $keys);
         self::$data = $data;
-
         $data = self::getChildren(0, self::$data);
+
         return self::buildTree($data);
     }
 
@@ -75,9 +98,6 @@ class Tree {
             } else {
                 self::$prefix[] = self::$icons['space'];
             }
-        } else {
-             self::$prefix = array();
-             $tmp   = self::$prefix;
         }
 
         //array_pop($tmp);
@@ -91,10 +111,9 @@ class Tree {
             $item[self::$keys['level']] = self::$level;
             $item[self::$keys['tail']]  = $isTail;
             $item[self::$keys['head']]  = $isHead;
-            $item['parent_count']       = count($data);
 
             $icon = join('', $tmp);
-
+            // 第1级开始加图标
             if (self::$level > 0) {
                 if ($isTail) {
                     $icon .= self::$icons['last'];
@@ -106,10 +125,9 @@ class Tree {
 
             $item[self::$keys['icon']] = empty($icon) ? $icon : self::$icons['space'] . $icon;
 
-
             self::$output[] = $item;
             if (!empty($children)) {
-                if ($isTail) {
+                if ($isTail) { //最后一个
                     array_pop(self::$prefix);
                     self::$prefix[] = self::$icons['space'];
                 }

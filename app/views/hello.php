@@ -50,7 +50,7 @@
 			<iframe src="http://ghbtns.com/github-btn.html?user=joychao&repo=writor&type=fork"
   allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
 			<iframe src="http://ghbtns.com/github-btn.html?user=joychao&repo=writor&type=follow"
-  allowtransparency="true" frameborder="0" scrolling="0" width="62" height="20"></iframe>
+  allowtransparency="true" frameborder="0" scrolling="0" width="122" height="20"></iframe>
 		</p>
 	</div>
 </body>

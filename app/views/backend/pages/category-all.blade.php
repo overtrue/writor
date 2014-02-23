@@ -20,7 +20,7 @@
                             <select name="parent_id" class="selectboxit">
                                 <option value="0">无</option>
                                 @foreach($categorys as $category)
-                                <option value="{{$category->term_id}}" @if(Input::old('parent_id') == $category->term_id) selected @endif>{{$category->term->name}}</option>
+                                <option value="{{$category['term_id']}}" @if(Input::old('parent_id') == $category['term_id']) selected @endif>{{ $category['icon'] . "  " . $category['term']['name'] }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -52,7 +52,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach($categoryTree as $category)
+                    @foreach($categorys as $category)
                     <tr>
                         <td><input type="checkbox" value="{{$category['term_id']}}"></td>
                         <td>{{ $category['term_id'] }}</td>

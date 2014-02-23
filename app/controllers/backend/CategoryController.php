@@ -19,12 +19,10 @@ class CategoryController extends BaseController {
      */
     public function getAll()
     {
-        $categorys = TermTaxonomy::category()->with('term')->orderBy('parent')->orderBy('id')->get();
-        $categoryTree = Tree::make($categorys->toArray(), array('id' => 'term_id'));
+        $categorys = Term::getTree(TermTaxonomy::TYPE_CATEGORY);
 
         return View::make('backend.pages.category-all')
-                     ->withCategorys($categorys)
-                     ->with('categoryTree', $categoryTree);
+                     ->withCategorys($categorys);
     }
 
     /**

@@ -1,6 +1,8 @@
 <?php namespace Backend;
 
 use \View;
+use \Term;
+use \TermTaxonomy;
 use \Input;
 use \Validator;
 use \Redirect;
@@ -27,7 +29,8 @@ class PostController extends BaseController {
      */
     public function getNew()
     {
-        return View::make('backend.pages.post-new');
+        $categorys = Term::getTree(TermTaxonomy::TYPE_CATEGORY);
+        return View::make('backend.pages.post-new')->withCategorys($categorys);
     }
 
 }

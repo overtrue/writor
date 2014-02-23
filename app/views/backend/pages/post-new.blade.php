@@ -21,10 +21,9 @@
             <label class="col-md-1 control-label">文章分类: </label>
             <div class="col-md-4">
               <select name="category" class="selectboxit col-md-4">
-                <option value="2">Boston</option>
-                <option value="3">Ohaio</option>
-                <option value="4">New York</option>
-                <option value="5">Washington</option>
+                @foreach($categorys as $category)
+                <option value="{{$category['term_id']}}" @if(Input::old('parent_id') == $category['term_id']) selected @endif>{{ $category['icon'] . "  " . $category['term']['name'] }}</option>
+                @endforeach
               </select>
             </div>
             <label class="col-md-1 control-label">查看密码: </label>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Laravel PHP Framework</title>
+	<title>Writor - 一个博客系统</title>
 	<link href='http://fonts.googleapis.com/css?family=Ubuntu:300italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 	<style>
 		body {

@@ -297,9 +297,15 @@
   <script src="{{ asset('/assets/js/admin-common.js') }}" id="script-resource-23"></script>
   <script type="text/javascript">
   $(document).ready(function(){
-    var currentAction = $('.sidebar-menu a[href="{{URL::current()}}"]');
-    var parentLink = currentAction.parent().parent('ul').prev('a');
+    var currentAction = $('#main-menu a[href="{{URL::current()}}"]:last');
+    var parentUl = currentAction.parent().parent('ul');
+    var parentRoot = parentUl.parent('li.root-level');
+    var parentLink = parentUl.prev('a');
     var breadCrumbs = $('.breadcrumb');
+    parentRoot.addClass('active opened').siblings().removeClass('active').removeClass('opened');
+    if (parentRoot.hasClass('has-sub') || $('.page-container.sidebar-collapsed').length) {
+      parentUl.slideDown(300);
+    };
     breadCrumbs.find('li:last strong').text(currentAction.find('span').text()).parent().prev('li').find('a').attr('href', parentLink.attr('href')).text(parentLink.text());
   });
   </script>

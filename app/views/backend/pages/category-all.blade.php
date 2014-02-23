@@ -57,7 +57,7 @@
                         <td><input type="checkbox" value="{{$category['term_id']}}"></td>
                         <td>{{ $category['term_id'] }}</td>
                         <td>{{ $category['icon'] . "  " . $category['term']['name'] }}</td>
-                        <td>{{ $category['description'] }}</td>
+                        <td>{{ !empty($category['description']) ? $category['description'] : '无' }}</td>
                         <td>{{ $category['term']['slug'] }}</td>
                         <td>{{ $category['count'] }}</td>
                     </tr>

@@ -15,10 +15,11 @@ class CreateTermRelationships extends Migration {
 		Schema::dropIfExists('term_relationships');
 		Schema::create('term_relationships', function(Blueprint $table)
 		{
+			$table->increments('id');//ID
 			$table->integer('object_id');//对应文章ID/链接ID
-			$table->integer('term_taxonomy_id')->index();//对应分类方法ID
-			$table->integer('term_order')->nullable()->default(0);//排序
-			$table->primary(array('object_id', 'term_taxonomy_id'));
+			$table->integer('category_id')->index();//对应分类ID
+			$table->integer('category_order')->nullable()->default(0);//排序
+			$table->unique(array('object_id', 'category_id'));
 		});
 	}
 

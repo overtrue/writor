@@ -15,12 +15,12 @@ class Post extends Eloquent {
     }
 
     /**
-     * 分类
+     * 获取文章分类
      *
      * @return object
      */
     public function categorys()
     {
-        return $this->hasManyThrough('TermRelation', 'TermTaxonomy', 'id', 'object_id');
+        //return $this->hasManyThrough('Category', 'TermRelation', 'category_id');
     }
 }

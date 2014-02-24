@@ -3,11 +3,10 @@
 use \DB;
 use \Tree;
 use \View;
-use \Term;
+use \Category;
 use \Input;
 use \Redirect;
 use \Validator;
-use \TermTaxonomy;
 
 class CategoryController extends BaseController {
 
@@ -19,7 +18,7 @@ class CategoryController extends BaseController {
      */
     public function getAll()
     {
-        $categorys = Term::getTree(TermTaxonomy::TYPE_CATEGORY);
+        $categorys = Category::getTree();
 
         return View::make('backend.pages.category-all')
                      ->withCategorys($categorys);
@@ -45,35 +44,26 @@ class CategoryController extends BaseController {
         }
 
         // 检测分类名
-        if (Term::whereName(Input::get('name'))->count()) {
+        if (Category::whereName(Input::get('name'))->count()) {
             return Redirect::back()->withMessage("分类 '" . Input::get('name')."' 已经存在！")
                                    ->withColor('danger')
                                    ->withInput(Input::all());
         }
         //检测别名
-        if (Term::whereSlug(Input::get('slug'))->count()) {
+        if (Category::whereSlug(Input::get('slug'))->count()) {
             return Redirect::back()->withMessage("分类别名 '" . Input::get('slug')."' 已经存在！")
                                    ->withColor('danger')
                                    ->withInput(Input::all());
         }
 
         // 创建分类
-        $category = Term::create(Input::only(array('name', 'slug')));
-        $category->slug = str_replace(' ','', snake_case($category->slug));
+        $category              = new Category;
+        $category->name        = Input::get('name');
+        $category->slug        = str_replace(' ','', snake_case(Input::get('name')));
+        $category->parent      = Input::get('parent_id');
+        $category->description = Input::get('description');
 
-        //创建分类其它信息
-        DB::transaction(function() use ($category) {
-            $category->save();
-            $termTaxonomy              = new TermTaxonomy;
-            $termTaxonomy->term_id     = $category->id;
-            $termTaxonomy->taxonomy    = TermTaxonomy::TYPE_CATEGORY;
-            $termTaxonomy->description = Input::get('description');
-            $termTaxonomy->parent      = Input::get('parent_id');
-            $termTaxonomy->save();
-            if (!$termTaxonomy->id) {
-                $category->rollback();
-            }
-        });
+        $category->save();
 
         return Redirect::back()->withMessage("分类 '$category->name' 添加成功！"); 
     }

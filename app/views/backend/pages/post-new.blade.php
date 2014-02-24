@@ -22,7 +22,7 @@
             <div class="col-md-4">
               <select name="category" class="selectboxit col-md-4">
                 @foreach($categorys as $category)
-                <option value="{{$category['term_id']}}" @if(Input::old('parent_id') == $category['term_id']) selected @endif>{{ $category['icon'] . "  " . $category['term']['name'] }}</option>
+                <option value="{{$category['id']}}" @if(Input::old('parent_id') == $category['id']) selected @endif>{{ $category['icon'] . "  " . $category['name'] }}</option>
                 @endforeach
               </select>
             </div>

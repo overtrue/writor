@@ -2,13 +2,12 @@
 
 use \View;
 use \Auth;
-use \Term;
+use \Category;
 use \Post;
 use \Input;
 use \Redirect;
 use \Validator;
 use \TermRelation;
-use \TermTaxonomy;
 
 /**
 * 文章控制器
@@ -22,8 +21,8 @@ class PostController extends BaseController {
      */
     public function getAll()
     {
-        $posts = Post::with('categorys')->where('post_author', Auth::user()->id)->paginate(15);
-var_dump($posts->toArray());
+        $posts = Post::where('post_author', Auth::user()->id)->paginate(15);
+        var_dump($posts->toArray());
         return View::make('backend.pages.post-all')->withPosts($posts);
     }
         
@@ -34,7 +33,7 @@ var_dump($posts->toArray());
      */
     public function getNew()
     {
-        $categorys = Term::getTree(TermTaxonomy::TYPE_CATEGORY);
+        $categorys = Category::getTree();
         return View::make('backend.pages.post-new')->withCategorys($categorys);
     }
 
@@ -62,12 +61,10 @@ var_dump($posts->toArray());
         $post->post_title = Input::get('title');
         $post->post_content = Input::get('content');
 
-        $termTaxonomy = TermTaxonomy::where('term_id', Input::get('category'))->first();
-        if (empty($termTaxonomy)) {
-            return Redirect::back()->withMessage('分类不存在！');
-        }
+        $category = Category::findOrFail(Input::get('category'));
+
         $termRelation =  new TermRelation;
-        $termRelation->term_taxonomy_id = $termTaxonomy->id;
+        $termRelation->category_id = $category->id;
 
         $post->save();
         $post->termRelation()->save($termRelation);

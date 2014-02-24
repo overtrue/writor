@@ -12,7 +12,7 @@ class CreateCommentmeta extends Migration {
 	 */
 	public function up()
 	{
-		Schema::dropIfExists('postmeta');
+		Schema::dropIfExists('commentmeta');
 		Schema::create('commentmeta', function(Blueprint $table)
 		{
 			$table->increments('id');//自增唯一ID

@@ -12,7 +12,7 @@ class CreateUsermeta extends Migration {
 	 */
 	public function up()
 	{
-		Schema::dropIfExists('postmeta');
+		Schema::dropIfExists('usermeta');
 		Schema::create('usermeta', function(Blueprint $table)
 		{
 			$table->increments('id');//自增唯一ID

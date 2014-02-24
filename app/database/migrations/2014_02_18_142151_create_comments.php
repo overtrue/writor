@@ -12,7 +12,7 @@ class CreateComments extends Migration {
 	 */
 	public function up()
 	{
-		Schema::dropIfExists('postmeta');
+		Schema::dropIfExists('comments');
 		Schema::create('comments', function(Blueprint $table)
 		{
 			$table->increments('id');//自增唯一ID

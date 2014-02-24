@@ -12,7 +12,7 @@ class CreatePosts extends Migration {
 	 */
 	public function up()
 	{
-		Schema::dropIfExists('postmeta');
+		Schema::dropIfExists('posts');
 		Schema::create('posts', function(Blueprint $table)
 		{
 			$table->increments('id');//自增唯一ID

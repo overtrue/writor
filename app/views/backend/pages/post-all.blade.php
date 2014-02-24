@@ -10,54 +10,26 @@
             <thead>
                 <tr>
                     <th>
-                        <input type="checkbox" class="select-all"></th>
-                    <th>分类名</th>
-                    <th>描述</th>
-                    <th>别名</th>
-                    <th>文章</th>
+                        <input type="checkbox" class="select-all">
+                    </th>
+                    <th>标题</th>
+                    <th>分类</th>
+                    <th>浏览次数</th>
+                    <th>评论次数</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach($posts as $post)
                 <tr>
                     <td>
-                        <input type="checkbox"></td>
-                    <td>分类1</td>
-                    <td>这是分类1的描述</td>
-                    <td>cate1</td>
+                        <input type="checkbox" value="{{$post->id}}">
+                    </td>
+                    <td>{{$post->post_title}}</td>
+                    <td></td>
+                    <td>40</td>
                     <td>20</td>
                 </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox"></td>
-                    <td>分类2</td>
-                    <td>这是分类2的描述</td>
-                    <td>cate2</td>
-                    <td>17</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox"></td>
-                    <td>分类3</td>
-                    <td>这是分类3的描述</td>
-                    <td>cate3</td>
-                    <td>0</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox"></td>
-                    <td>-- 子分类1</td>
-                    <td>这是子分类1的描述</td>
-                    <td>cate4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="checkbox"></td>
-                    <td>-- 子分类2</td>
-                    <td>这是子分类2的描述</td>
-                    <td>cate5</td>
-                    <td>9</td>
-                </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -1,7 +1,7 @@
 @extends('backend.layout')
 @section('content')
       <div class="row">
-        <form action="" method="post" accept-charset="utf-8" class="form-horizontal">
+        <form action="{{url('/admin/post/create')}}" method="post" accept-charset="utf-8" class="form-horizontal">
           <div class="col-md-12 form-group">
             <input type="text" class="form-control " name="title" value="" placeholder="文章标题"><br>
           </div>
@@ -15,7 +15,7 @@
           </div>
           <div class="col-md-12 form-group pull-right">
             <div class="col-md-3">
-              <button type="button" class="btn btn-success"> 发 布 </button>
+              <button type="submit" class="btn btn-success"> 发 布 </button>
               <button type="button" class="btn btn-default"> 存为草稿 </button>
             </div>
             <label class="col-md-1 control-label">文章分类: </label>

@@ -1,11 +1,14 @@
 <?php namespace Backend;
 
 use \View;
+use \Auth;
 use \Term;
-use \TermTaxonomy;
+use \Post;
 use \Input;
-use \Validator;
 use \Redirect;
+use \Validator;
+use \TermRelation;
+use \TermTaxonomy;
 
 /**
 * 文章控制器
@@ -19,7 +22,9 @@ class PostController extends BaseController {
      */
     public function getAll()
     {
-        return View::make('backend.pages.post-all');
+        $posts = Post::with('categorys')->where('post_author', Auth::user()->id)->paginate(15);
+var_dump($posts->toArray());
+        return View::make('backend.pages.post-all')->withPosts($posts);
     }
         
     /**
@@ -41,10 +46,33 @@ class PostController extends BaseController {
     public function postCreate()
     {
         $rules = array(
-                  'post_title' => 'required',
-                  'post_content' => 'required',
-                  'post_category' => 'required|integer',
+                  'title'    => 'required',
+                  'content'  => 'required',
+                  'category' => 'required|integer',
                  );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        //验证失败
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput(Input::all());
+        }   
+
+        $post = new Post;
+        $post->post_title = Input::get('title');
+        $post->post_content = Input::get('content');
+
+        $termTaxonomy = TermTaxonomy::where('term_id', Input::get('category'))->first();
+        if (empty($termTaxonomy)) {
+            return Redirect::back()->withMessage('分类不存在！');
+        }
+        $termRelation =  new TermRelation;
+        $termRelation->term_taxonomy_id = $termTaxonomy->id;
+
+        $post->save();
+        $post->termRelation()->save($termRelation);
+
+        return Redirect::back()->withMessage('发布成功！', link_to('admin/post/list', '查看文章列表'));
 
     }
 

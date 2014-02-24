@@ -1,7 +1,7 @@
 <?php
 
 class TermRelation extends Eloquent {
-    protected $table    = 'termrelations';
+    protected $table    = 'term_relationships';
     public  $timestamps = false;
 
 }

@@ -21,8 +21,7 @@ class PostController extends BaseController {
      */
     public function getAll()
     {
-        $posts = Post::where('post_author', Auth::user()->id)->paginate(15);
-        var_dump($posts->toArray());
+        $posts = User::posts()->paginate(15);
         return View::make('backend.pages.post-all')->withPosts($posts);
     }
         

@@ -21,6 +21,6 @@ class Post extends Eloquent {
      */
     public function categorys()
     {
-        //return $this->hasManyThrough('Category', 'TermRelation', 'category_id');
+        //return Category::where();
     }
 }

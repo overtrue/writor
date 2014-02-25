@@ -18,6 +18,3 @@
 
 5.如果你的目录为www/writor，那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
 
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/joychao/writor/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

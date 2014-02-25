@@ -21,6 +21,6 @@ class Post extends Eloquent {
      */
     public function categorys()
     {
-        //return Category::where();
+        //return Category::whereIn('id');
     }
 }

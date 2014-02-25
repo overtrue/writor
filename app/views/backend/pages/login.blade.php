@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/neon-forms.min.css')}}"  id="style-resource-7">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"  id="style-resource-8">
     <script src="{{asset('assets/js/jquery-1.11.0.min.js')}}"></script>
-    <script type="text/javascript">var baseurl = window.location.origin;</script>
+    <script type="text/javascript">var baseurl = "{{ url('/') }}";</script>
     <!--[if lt IE 9]>
     <script src="{{asset('assets/js/ie8-responsive-file-warning.js')}}"></script>
     <![endif]-->

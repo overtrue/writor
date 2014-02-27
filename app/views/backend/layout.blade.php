@@ -200,13 +200,13 @@
                   </a>
                 </li>
                 <li>
-                  <a href="http://themes.laborator.co/neon/mailbox/main/">
+                  <a href="/mailbox/main/">
                     <i class="entypo-mail"></i>
                     Inbox
                   </a>
                 </li>
                 <li>
-                  <a href="http://themes.laborator.co/neon/extra/calendar/">
+                  <a href="/extra/calendar/">
                     <i class="entypo-calendar"></i>
                     Calendar
                   </a>
@@ -244,7 +244,7 @@
       <hr />
       @if(Session::has('message'))
       <div class="form-group">
-        <div class="tips {{ !empty(Session::get('color')) ? 'text-' . Session::get('color') : 'text-info' }}">
+        <div class="tips {{ 'text-'. Session::get('color', 'info')) }}">
         <i class="pull-right">✕</i>
         {{ Session::get('message') }}
         </div>

@@ -102,6 +102,7 @@ return array(
                     'repassword' => '<span class="badge badge-info">确认密码</span>',
                     'tel'      => '<span class="badge badge-info">电话</span>',
                     'slug'     => '<span class="badge badge-info">别名</span>',
+                    'category' => '<span class="badge badge-info">分类</span>',
                     ),
 
 );

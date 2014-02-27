@@ -55,6 +55,11 @@
                 </thead>
 
                 <tbody>
+                    @if(!count($posts))
+                    <tr>
+                        <td colspan="6">目前没有分类</td>
+                    </tr>
+                    @else
                     @foreach($categorys as $category)
                     <tr>
                         <td><input type="checkbox" value="{{$category['id']}}"></td>
@@ -65,6 +70,7 @@
                         <td>{{ $category['count'] }}</td>
                     </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
         </div>

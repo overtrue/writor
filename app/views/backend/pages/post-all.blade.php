@@ -19,6 +19,11 @@
                 </tr>
             </thead>
             <tbody>
+                @if(!count($posts))
+                <tr>
+                    <td colspan="5">目前没有文章</td>
+                </tr>
+                @else
                 @foreach($posts as $post)
                 <tr>
                     <td>
@@ -50,6 +55,7 @@
                     </td>
                 </tr>
                 @endforeach
+                @endif
             </tbody>
         </table>
     </div>

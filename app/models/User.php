@@ -23,7 +23,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	public function posts()
 	{
-		return $this->hasMany('Post', 'post_author');
+		return $this->hasMany('Post', 'post_author')->with('TermRelation');
 	}
 
 	/**

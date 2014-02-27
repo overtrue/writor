@@ -1,6 +1,7 @@
 <?php namespace Backend;
 
 use \View;
+use \User;
 use \Auth;
 use \Category;
 use \Post;
@@ -21,7 +22,8 @@ class PostController extends BaseController {
      */
     public function getAll()
     {
-        $posts = User::posts()->paginate(15);
+        $posts = Auth::user()->posts()->paginate(15);
+        
         return View::make('backend.pages.post-all')->withPosts($posts);
     }
         

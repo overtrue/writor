@@ -1,7 +1,7 @@
 <?php
 
 class Post extends Eloquent {
-    protected $table = 'posts';
+    protected $table      = 'posts';
     protected $softDelete = true;
 
     /**
@@ -11,16 +11,23 @@ class Post extends Eloquent {
      */
     public function termRelation()
     {
-        return $this->hasMany('TermRelation', 'object_id');
+        return $this->hasMany('TermRelation', 'object_id')->with('term');
     }
 
     /**
      * 获取文章分类
      *
+     * @param boolean $toArray 
+     *
      * @return object
      */
-    public function categorys()
+    public function categorys($toArray = true)
     {
-        //return Category::whereIn('id');
+        $categorys = array();
+        foreach ($this->term_relation as $termRelation) {
+            $categorys[] = $toArray ? $termRelation->term->toArray() : $termRelation->term;
+        }
+
+        return $categorys;
     }
 }

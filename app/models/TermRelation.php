@@ -12,7 +12,7 @@ class TermRelation extends Eloquent {
      */
     public function term()
     {
-        return $this->hasManyThrough('Term', 'TermTaxonomy', 'id', 'term_taxonomy_id');
+        return $this->belongsTo('Category', 'category_id');
     }
 
 }

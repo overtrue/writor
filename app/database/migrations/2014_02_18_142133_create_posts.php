@@ -24,6 +24,7 @@ class CreatePosts extends Migration {
 		    $table->string('post_password', 20)->nullable();//文章密码
 		    $table->string('post_type', 20)->nullable()->default('post');//文章类型（post/page等）
 		    $table->integer('comment_count')->nullable()->default(0);//评论总数
+		    $table->integer('view_count')->nullable()->default(0);//浏览总数
 		    $table->timestamps();
 		    $table->softDeletes();
 		    $table->index(array('post_status', 'post_type'));

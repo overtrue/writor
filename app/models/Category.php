@@ -15,14 +15,11 @@ class Category extends Eloquent {
      *
      * @return object
      */
-    public static function getAll($credential = array())
+    public static function getAll(Closure $callback = null)
     {
         $terms = Category::orderBy('id', 'desc');
-        if (!empty($credential)) {
-            foreach ($credential as $field => $value) {
-                $method = 'where'.studly_case($field); // whereSomeField('someValue');
-                $terms = call_user_func_array(array($terms, $method), $value);        
-            }
+        if ($callback) {
+            $callback($terms);
         }
         
         return $terms->get();
@@ -36,9 +33,9 @@ class Category extends Eloquent {
      *
      * @return array
      */
-    public static function getTree($credential = array())
+    public static function getTree(callback $callback = null)
     {
-        $terms = self::getAll($credential);
+        $terms = self::getAll($callback);
 
         return Tree::make($terms->toArray());
     }

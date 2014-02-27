@@ -25,9 +25,15 @@
                         <input type="checkbox" value="{{$post->id}}">
                     </td>
                     <td>{{$post->post_title}}</td>
-                    <td></td>
-                    <td>40</td>
-                    <td>20</td>
+                    <td>
+                        @if(!count($post->categorys()))
+                            无
+                        @else
+                            {{join('、', array_fetch($post->categorys(), 'name'))}}
+                        @endif
+                    </td>
+                    <td>{{$post->view_count}}</td>
+                    <td>{{$post->comment_count}}</td>
                 </tr>
                 @endforeach
             </tbody>

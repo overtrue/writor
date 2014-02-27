@@ -1,6 +1,6 @@
 @extends('backend.layout')
 @section('page_title')
-控制面板
+<h1>控制面板</h1>
 @endsection
 @section('content')
 <div class="row">

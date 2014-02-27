@@ -79,6 +79,9 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
-require app_path().'/errors.php';
+if (App::environment() != 'production') {
+    // 开发环境下还是要报出错误来比较好
+    require app_path().'/errors.php';
+}
 require app_path().'/listener.php';
 require app_path().'/common.php';

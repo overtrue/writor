@@ -18,3 +18,5 @@
 
 5.如果你的目录为www/writor，那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
 
+###Demo
+![http://writor.me]

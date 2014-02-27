@@ -21,7 +21,7 @@
             <tbody>
                 @if(!count($posts))
                 <tr>
-                    <td colspan="5">目前没有文章</td>
+                    <td colspan="6">目前没有文章</td>
                 </tr>
                 @else
                 @foreach($posts as $post)

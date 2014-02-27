@@ -54,7 +54,7 @@
         </div>
       </header>
       <ul id="main-menu" class="">
-        <li class="opened active">
+        <li>
           <a href="{{ url('admin') }}">
             <i class="entypo-gauge"></i>
             <span>控制面板</span>
@@ -285,7 +285,7 @@
     var parentUl = currentAction.parent().parent('ul');
     var parentRoot = parentUl.parent('li.root-level');
     var parentLink = parentUl.prev('a');
-    
+    //TODO:js还需要优化，因为如果没有子菜单的高亮无效
     parentRoot.addClass('active opened').siblings().removeClass('active').removeClass('opened');
     if (parentRoot.hasClass('has-sub') || $('.page-container.sidebar-collapsed').length) {
       parentUl.slideDown(300);

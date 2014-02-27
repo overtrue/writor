@@ -244,7 +244,7 @@
       <hr />
       @if(Session::has('message'))
       <div class="form-group">
-        <div class="tips {{ !empty(Session::get('color')) ? 'text-' . Session::get('color') : 'text-info' }}">
+        <div class="tips {{ !Session::has('color') ? 'text-' . Session::get('color') : 'text-info' }}">
         <i class="pull-right">✕</i>
         {{ Session::get('message') }}
         </div>

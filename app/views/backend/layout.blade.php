@@ -31,7 +31,7 @@
   <![endif]-->
 </head>
 <body class="page-body">
-  <div class="page-container @if(Cookie::get('sidebar_status', 'show') == 'hide') sidebar-collapsed @endif">
+  <div class="page-container @if(isset($_COOKIE['sidebar_status']) && $_COOKIE['sidebar_status'] == 'hide') sidebar-collapsed @endif">
     <div class="sidebar-menu">
       <header class="logo-env">
         <!-- logo -->

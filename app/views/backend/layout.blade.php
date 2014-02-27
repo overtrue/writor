@@ -187,11 +187,8 @@
             <!-- Profile Info -->
             <li class="profile-info dropdown">
               <!-- add class "pull-right" if you want to place this from right -->
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="http://themes.laborator.co/neon/assets/images/thumb-1@2x.png" alt="" class="img-circle" width="44" />
-                Art Ramadani
-              </a>
-
+              @yield('page_title')
+              
               <ul class="dropdown-menu">
                 <!-- Reverse Caret -->
                 <li class="caret"></li>
@@ -263,19 +260,6 @@
           </ul>
       </div>
       @endif
-      <ol class="breadcrumb bc-3">
-        <li>
-          <a href="http://themes.laborator.co/neon/dashboard/main/">
-            <i class="entypo-home"></i>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="">Dashboard</a>
-        </li>
-        <li class="active"><strong>What's New</strong>
-        </li>
-      </ol>
       @yield('content')
       <!-- Footer -->
       <footer class="main">
@@ -301,12 +285,11 @@
     var parentUl = currentAction.parent().parent('ul');
     var parentRoot = parentUl.parent('li.root-level');
     var parentLink = parentUl.prev('a');
-    var breadCrumbs = $('.breadcrumb');
+    
     parentRoot.addClass('active opened').siblings().removeClass('active').removeClass('opened');
     if (parentRoot.hasClass('has-sub') || $('.page-container.sidebar-collapsed').length) {
       parentUl.slideDown(300);
     };
-    breadCrumbs.find('li:last strong').text(currentAction.find('span').text()).parent().prev('li').find('a').attr('href', parentLink.attr('href')).text(parentLink.text());
   });
   </script>
   @yield('page_js')

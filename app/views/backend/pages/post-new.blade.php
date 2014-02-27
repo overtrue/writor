@@ -1,4 +1,7 @@
 @extends('backend.layout')
+@section('page_title')
+<h1>写文章 <a href="{{url('/admin/post/all')}}" class="btn btn-info">文章列表</a></h1>
+@endsection
 @section('content')
       <div class="row">
         <form action="{{url('/admin/post/create')}}" method="post" accept-charset="utf-8" class="form-horizontal">

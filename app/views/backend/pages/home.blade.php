@@ -1,4 +1,7 @@
 @extends('backend.layout')
+@section('page_title')
+控制面板
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 form-group">

@@ -1,4 +1,7 @@
 @extends('backend.layout')
+@section('page_title')
+<h1>文章分类</h1>
+@endsection
 @section('content')
 <div class="row">
     <div class="col-md-12 row form-group">

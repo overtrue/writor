@@ -1,10 +1,9 @@
 @extends('backend.layout')
+@section('page_title')
+<h1>文章 <a href="{{url('/admin/post/new')}}" class="btn btn-info">写文章</a></h1>
+@endsection
 @section('content')
 <div class="row">
-    <div class="col-md-12 form-group">
-        <h2 class="inline-block">所有文章</h2>
-        <button class="btn btn-xs btn-info" onclick="javascript:window.location.href='{{ url('admin/post/new') }}'" >写文章</button>
-    </div>
     <div class="col-md-12 form-group">
         <table class="table table-striped">
             <thead>
@@ -39,7 +38,7 @@
                     <td>{{$post->comment_count}}</td>
                     <td>
                         <div class="td-tool-bar">
-                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left">
+                            <a href="{{url('/admin/post/edit', array('id' => $post->id))}}" class="btn btn-default btn-sm btn-icon icon-left">
                                 <i class="entypo-pencil"></i>
                                 编辑
                             </a>

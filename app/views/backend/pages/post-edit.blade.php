@@ -1,4 +1,7 @@
 @extends('backend.layout')
+@section('page_title')
+<h1>编辑文章 <a href="{{url('/admin/post/all')}}" class="btn btn-info">文章列表</a></h1>
+@endsection
 @section('content')
       <div class="row">
         <form action="{{url('/admin/post/update')}}" method="post" accept-charset="utf-8" class="form-horizontal">
@@ -6,7 +9,7 @@
             <input type="text" class="form-control " name="title" value="{{$post->title}}" placeholder="文章标题"><br>
           </div>
           <div class="col-md-12 form-group">
-            <textarea name="content" id="content" class="col-md-12"></textarea>
+            <textarea name="content" id="content" class="col-md-12">{{$post->content}}</textarea>
           </div>
           <div class="col-md-12 form-group">
             <div class="col-md-12">

@@ -23,7 +23,7 @@ class PostController extends BaseController {
     public function getAll()
     {
         $posts = Auth::user()->posts()->paginate(15);
-        
+
         return View::make('backend.pages.post-all')->withPosts($posts);
     }
         
@@ -72,6 +72,21 @@ class PostController extends BaseController {
 
         return Redirect::back()->withMessage('发布成功！', link_to('admin/post/list', '查看文章列表'));
 
+    }
+
+    /**
+     * 编辑文章
+     *
+     * @param integer $id 
+     *
+     * @return object
+     */
+    public function getEdit($id)
+    {
+        $post = Post::findOrFail($id);
+        $categorys = Category::getTree();
+
+        return View::make('backend.pages.post-edit')->withPost($post)->withCategorys($categorys);
     }
 
 }

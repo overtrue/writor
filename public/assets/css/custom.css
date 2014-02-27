@@ -9,6 +9,7 @@ body {
 }
 
 .inline-block {display: inline-block;}
+.hidden {display: none;}
 
 /* logo */
 .logo h1 {color: #fff; margin: 0;}
@@ -75,3 +76,7 @@ div.text-info h4 {
   color: #34789a;
 }
 
+/**
+ * 表格
+ */
+.do {width:20%; min-width: 230px;}

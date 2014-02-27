@@ -16,6 +16,7 @@
                     <th>分类</th>
                     <th>浏览次数</th>
                     <th>评论次数</th>
+                    <th class="do">操作</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +25,9 @@
                     <td>
                         <input type="checkbox" value="{{$post->id}}">
                     </td>
-                    <td>{{$post->post_title}}</td>
+                    <td class="td-post-title">
+                        {{$post->post_title}}
+                    </td>
                     <td>
                         @if(!count($post->categorys()))
                             无
@@ -34,6 +37,18 @@
                     </td>
                     <td>{{$post->view_count}}</td>
                     <td>{{$post->comment_count}}</td>
+                    <td>
+                        <div class="td-tool-bar">
+                            <a href="#" class="btn btn-default btn-sm btn-icon icon-left">
+                                <i class="entypo-pencil"></i>
+                                编辑
+                            </a>
+                            <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
+                                <i class="entypo-cancel"></i>
+                                删除
+                            </a>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

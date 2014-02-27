@@ -90,7 +90,7 @@
 
         </li>
 
-        <li>
+        <!-- <li>
           <a href="{{ url('/admin/comment/all') }}">
             <i class="entypo-comment"></i>
             <span>评论</span>
@@ -140,9 +140,9 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
-        <li>
+        <!-- <li>
           <a href="{{ url('/admin/user/all') }}">
             <i class="entypo-user"></i>
             <span>用户</span>
@@ -161,7 +161,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> -->
 
         <li>
           <a href="{{ url('/admin/setting/basic') }}">

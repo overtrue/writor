@@ -15,6 +15,12 @@ use \TermRelation;
 */
 class PostController extends BaseController {
 
+    protected $rules = array(
+                  'title'    => 'required',
+                  'content'  => 'required',
+                  'category' => 'required|integer',
+                 );
+
     /**
      * 所有文章
      *
@@ -45,13 +51,7 @@ class PostController extends BaseController {
      */
     public function postCreate()
     {
-        $rules = array(
-                  'title'    => 'required',
-                  'content'  => 'required',
-                  'category' => 'required|integer',
-                 );
-
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(Input::all(), $this->rules);
 
         //验证失败
         if ($validator->fails()) {
@@ -87,6 +87,32 @@ class PostController extends BaseController {
         $categorys = Category::getTree();
 
         return View::make('backend.pages.post-edit')->withPost($post)->withCategorys($categorys);
+    }
+
+    /**
+     * 更新文章
+     *
+     * @param integer $id 
+     *
+     * @return object
+     */
+    public function postUpdate($id)
+    {
+        $post = Post::findOrFail($id);
+        $validator = Validator::make(Input::all(), $this->rules);
+
+        //验证失败
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput(Input::all());
+        } 
+
+        $post->post_title = Input::get('title');
+        $post->post_content = Input::get('content');
+
+        //TODO:更新分类,还没想到一个万全之策
+        $post->save();
+
+        return Redirect::back()->withMessage('更新成功！');
     }
 
 }

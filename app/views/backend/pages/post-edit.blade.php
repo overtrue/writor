@@ -4,12 +4,12 @@
 @endsection
 @section('content')
       <div class="row">
-        <form action="{{url('/admin/post/update')}}" method="post" accept-charset="utf-8" class="form-horizontal">
+        <form action="{{url('/admin/post/update', array('id' => $post->id))}}" method="post" accept-charset="utf-8" class="form-horizontal">
           <div class="col-md-12 form-group">
-            <input type="text" class="form-control " name="title" value="{{$post->title}}" placeholder="文章标题"><br>
+            <input type="text" class="form-control " name="title" value="{{$post->post_title}}" placeholder="文章标题"><br>
           </div>
           <div class="col-md-12 form-group">
-            <textarea name="content" id="content" class="col-md-12">{{$post->content}}</textarea>
+            <textarea name="content" id="content" class="col-md-12">{{$post->post_content}}</textarea>
           </div>
           <div class="col-md-12 form-group">
             <div class="col-md-12">
@@ -53,38 +53,6 @@
 <script src="{{ asset('/assets/js/prettify.js') }}"></script>
 <script src="{{ asset('/assets/js/marked.js') }}"></script>
 <script src="{{ asset('/assets/js/editor.js') }}"></script>
+<script src="{{ asset('/assets/js/post.js') }}"></script>
 
-<script>
-  $(document).ready(function($) {
-    var editor = new Editor();
-    editor.render();
-    $(document).scroll(function() {
-      var editorToobar = $($('.editor-toolbar')[0]);
-      var cloneEditorToobar = editorToobar.clone();
-          cloneEditorToobar.addClass('clone-editor-toolbar').css({'position':'fixed', 'top':'0','background':'#fff','z-index':999999999, width:editorToobar.width()});
-      if ($(document).scrollTop() >= editorToobar.offset().top - editorToobar.height()) {
-        $('.clone-editor-toolbar').length || editorToobar.after(cloneEditorToobar);
-      } else {
-        $('.clone-editor-toolbar').remove();
-      }
-    });
-
-    // SelectBoxIt Dropdown replacement
-    if($.isFunction($.fn.selectBoxIt))
-    {
-      $("select.selectboxit").each(function(i, el)
-      {
-        var $this = $(el),
-          opts = {
-            showFirstOption: attrDefault($this, 'first-option', true),
-            'native': attrDefault($this, 'native', false),
-            defaultText: attrDefault($this, 'text', ''),
-          };
-          
-        $this.addClass('visible');
-        $this.selectBoxIt(opts);
-      });
-    }
-  })  
-</script>   
 @endsection

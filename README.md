@@ -18,5 +18,9 @@
 
 5.如果你的目录为www/writor，那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
 
+###友情提示
+如果你的网络慢，使用composer install老半天没反应，你可以直接拷其它laravel项目的vendor目录放到本目录就好。
+然后再执行一下：`composer dumpautoload`，如果运行不起来，试试`composer install`。:smiley:
+
 ###Demo
 [http://writor.me](http://writor.me)

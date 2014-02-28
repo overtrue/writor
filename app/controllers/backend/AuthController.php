@@ -20,7 +20,7 @@ class AuthController extends BaseController {
     /**
      * 登录
      *
-     * @return object
+     * @return Response
      */
     public function getLogin()
     {
@@ -34,7 +34,7 @@ class AuthController extends BaseController {
     /**
      * 执行登录操作
      *
-     * @return object
+     * @return Response
      */
     public function postLogin()
     {
@@ -60,7 +60,7 @@ class AuthController extends BaseController {
     /**
      * 注销登录 
      *
-     * @return object
+     * @return Response
      */
     public function getLogout()
     {

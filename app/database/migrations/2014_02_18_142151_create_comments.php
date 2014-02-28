@@ -22,7 +22,6 @@ class CreateComments extends Migration {
 			$table->string('comment_author_url', 200);//评论者网址
 			$table->string('comment_author_ip')->nullable();//评论者IP
 			$table->text('comment_content');//评论正文
-			$table->integer('comment_karma')->nullable()->default(0);//未知
 			$table->enum('comment_approved', array('0','1','spam'))->nullable()->default(0);//评论是否被批准
 			$table->string('comment_agent')->nullable();//评论者的USER AGENT
 			$table->integer('comment_parent')->nullable()->default(0);//父评论ID

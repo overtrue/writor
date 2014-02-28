@@ -7,7 +7,7 @@ class HomeController extends \Controller {
     /**
      * 后台首页
      *
-     * @return object
+     * @return Response
      */
     public function index()
     {

@@ -24,7 +24,7 @@ class PostController extends BaseController {
     /**
      * 所有文章
      *
-     * @return object
+     * @return Response
      */
     public function getAll()
     {
@@ -36,7 +36,7 @@ class PostController extends BaseController {
     /**
      * 新文章
      *
-     * @return object
+     * @return Response
      */
     public function getNew()
     {
@@ -47,7 +47,7 @@ class PostController extends BaseController {
     /**
      * 创建文章
      *
-     * @return object
+     * @return Response
      */
     public function postCreate()
     {
@@ -79,7 +79,7 @@ class PostController extends BaseController {
      *
      * @param integer $id 
      *
-     * @return object
+     * @return Response
      */
     public function getEdit($id)
     {
@@ -94,7 +94,7 @@ class PostController extends BaseController {
      *
      * @param integer $id 
      *
-     * @return object
+     * @return Response
      */
     public function postUpdate($id)
     {

@@ -14,7 +14,7 @@ class CategoryController extends BaseController {
     /**
      * 分类列表
      *
-     * @return object
+     * @return Response
      */
     public function getAll()
     {
@@ -29,7 +29,7 @@ class CategoryController extends BaseController {
      *
      * @param string $value 
      *
-     * @return object
+     * @return Response
      */
     public function postCreate()
     {

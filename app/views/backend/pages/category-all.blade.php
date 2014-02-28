@@ -55,7 +55,7 @@
                 </thead>
 
                 <tbody>
-                    @if(!count($posts))
+                    @if(!count($categorys))
                     <tr>
                         <td colspan="6">目前没有分类</td>
                     </tr>

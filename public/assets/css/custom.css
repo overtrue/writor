@@ -76,6 +76,128 @@ div.text-info h4 {
   color: #34789a;
 }
 
+/* pad */
+.pad-x-5,
+.pad-x-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.pad-x-10,
+.pad-x-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.pad-x-20,
+.pad-x-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.pad-x-30,
+.pad-x-30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.pad-x-40,
+.pad-x-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.pad-x-50,
+.pad-x-50 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.pad-y-5,
+.pad-y-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.pad-y-10,
+.pad-y-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.pad-y-20,
+.pad-y-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.pad-y-30,
+.pad-y-30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.pad-y-40,
+.pad-y-40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.pad-y-50,
+.pad-y-50 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.mg-x-5,
+.mg-x-5 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.mg-x-10,
+.mg-x-10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.mg-x-20,
+.mg-x-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.mg-x-30,
+.mg-x-30 {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.mg-x-40,
+.mg-x-40 {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.mg-x-50,
+.mg-x-50 {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.mg-y-5,
+.mg-y-5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.mg-y-10,
+.mg-y-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mg-y-20,
+.mg-y-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mg-y-30,
+.mg-y-30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.mg-y-40,
+.mg-y-40 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.mg-y-50,
+.mg-y-50 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 /**
  * 表格
  */

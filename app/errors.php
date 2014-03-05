@@ -1,33 +1,30 @@
 <?php
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-// 一般错误
-App::error(function(Exception $exception)
+
+$error = function(Exception $exception, $code = 500)
 {
     Log::error($exception);
-    
-    return View::make('500');
-});
+    if (Request::ajax()) {
+        return Response::json(array(
+                                'error_code' => $code,
+                                'error_desc' => $exception->getMessage() . ' at file' . $exception->getFile() . ' line:' . $exception->getLine(),
+                               ));
+    } else {
+        return View::make($code);
+    }
+};
+
+// 一般错误
+App::error($error);
 
 // 404
-App::missing(function($exception)
-{
-    Log::error($exception);
-
-    return View::make('404');
+App::missing(function($exception){
+    return $error($exception, 404);
 });
 
 // 服务器内部错误
-App::fatal(function(Exception $exception)
-{
-    Log::error($exception);
-    
-    return View::make('500');
-});
+App::fatal($error);
 
 //模型未找到
-App::error(function(ModelNotFoundException $exception)
-{
-    Log::error($exception);
-    return View::make('404');
-});
+App::error($error);

@@ -14,7 +14,7 @@
                 <strong>文章</strong><br>
                         <label class="pad-x-5">列表: <span class="badge badge-sm badge-success">90%</span></label>
                         <label class="pad-x-5">发布: <span class="badge badge-sm badge-success">100%</span></label>
-                        <label class="pad-x-5">编辑: <span class="badge badge-sm badge-success">90%</span></label>
+                        <label class="pad-x-5">编辑: <span class="badge badge-sm badge-success">100%</span></label>
                         <label class="pad-x-5">删除: <span class="badge badge-sm badge-default">0%</span></label>
                 </li>
                 <li>

@@ -20,16 +20,6 @@ class LinkController extends BaseController {
 	}
 
 	/**
-	 * 添加链接
-	 *
-	 * @return Response
-	 */
-	public function getNew()
-	{
-		return View::make('backend.pages.link-new');
-	}
-
-	/**
 	 * 编辑链接
 	 *
 	 * @return Response

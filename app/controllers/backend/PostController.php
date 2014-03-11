@@ -1,5 +1,6 @@
 <?php namespace Backend;
 
+use \DB;
 use \View;
 use \User;
 use \Auth;
@@ -83,7 +84,7 @@ class PostController extends BaseController {
      */
     public function getEdit($id)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::with('termRelation')->findOrFail($id);
         $categorys = Category::getTree();
 
         return View::make('backend.pages.post-edit')->withPost($post)->withCategorys($categorys);
@@ -109,7 +110,19 @@ class PostController extends BaseController {
         $post->post_title = Input::get('title');
         $post->post_content = Input::get('content');
 
-        //TODO:更新分类,还没想到一个万全之策
+        //因为打算改成文章有多个分类，所以这样的操作是合理的
+        $post->termRelation()->delete();
+        $categories = Input::get('category');
+        is_array($categories) || $categories = array($categories);
+        $termRelMultiData = array_map(function($categoryId) use ($post){
+            return array(
+                    'object_id'   => $post->id,
+                    'category_id' => $categoryId
+                   );
+        }, $categories);
+        //一次性写入多条
+        //请参考：http://www.golaravel.com/docs/4.1/queries/#inserts
+        DB::table('term_relationships')->insert($termRelMultiData);
         $post->save();
 
         return Redirect::back()->withMessage('更新成功！');

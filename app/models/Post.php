@@ -11,7 +11,7 @@ class Post extends Eloquent {
      */
     public function termRelation()
     {
-        return $this->hasMany('TermRelation', 'object_id')->with('term');
+        return $this->hasMany('TermRelation', 'object_id')->with('category');
     }
 
     /**
@@ -25,7 +25,7 @@ class Post extends Eloquent {
     {
         $categorys = array();
         foreach ($this->term_relation as $termRelation) {
-            $categorys[] = $toArray ? $termRelation->term->toArray() : $termRelation->term;
+            $categorys[] = $toArray ? $termRelation->category->toArray() : $termRelation->category;
         }
 
         return $categorys;

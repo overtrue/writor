@@ -17,19 +17,19 @@
             </div>
           </div>
           <div class="col-md-12 form-group pull-right">
-            <div class="col-md-3">
+            <div class="col-md-2">
               <button type="submit" class="btn btn-success"> 保存 </button>
               <button type="button" class="btn btn-default"> 存为草稿 </button>
             </div>
-            <label class="col-md-1 control-label">文章分类: </label>
+            <label class="col-md-1 control-label">分类: </label>
             <div class="col-md-4">
               <select name="category" class="selectboxit col-md-4">
                 @foreach($categorys as $category)
-                <option value="{{$category['id']}}" @if(Input::old('parent_id') == $category['id']) selected @endif>{{ $category['icon'] . "  " . $category['name'] }}</option>
+                <option value="{{$category['id']}}" @if(in_array($category['id'], array_pluck($post->categorys(), 'id')) || Input::old('parent_id') == $category['id']) selected @endif>{{ $category['icon'] . "  " . $category['name'] }}</option>
                 @endforeach
               </select>
             </div>
-            <label class="col-md-1 control-label">查看密码: </label>
+            <label class="col-md-2 control-label">查看密码: </label>
             <div class="col-md-3">
               <input type="text" class="form-control " name="post-password" value="" placeholder="查看密码，留空则不加密"><br>
             </div>

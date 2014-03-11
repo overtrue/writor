@@ -10,7 +10,7 @@ class TermRelation extends Eloquent {
      *
      * @return object
      */
-    public function term()
+    public function category()
     {
         return $this->belongsTo('Category', 'category_id');
     }

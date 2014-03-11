@@ -79,7 +79,7 @@
                     </div>
                 </form>
                 <div class="login-bottom-links">
-                    <a href="{{url('/auth/auth/login')}}" class="link">
+                    <a href="{{url('/admin/auth/login')}}" class="link">
                         <i class="entypo-lock"></i>
                         返回登录页
                     </a>

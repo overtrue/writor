@@ -4,7 +4,32 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-md-12 form-group">
+    <div class="col-md-4">
+            <div class="panel panel-primary" data-collapsed="0">
+                <div class="panel-body">
+                    <form action="{{url('/admin/link/create')}}" method="post" accept-charset="utf-8" class="">
+                        <div class="form-group">
+                            <label class="control-label">名称</label>
+                            <input type="text" name="name" class="form-control" placeholder="" value="{{Input::old('name')}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">网站</label>
+                            <input type="text" name="url" class="form-control" placeholder="例如：http://writor.me" value="{{Input::old('slug')}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">描述</label>
+                            <textarea name="description" class="form-control" placeholder="">{{Input::old('description')}}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label"></label>
+                            <button type="submit" class="btn btn-success">添加链接</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- /col-md-4-->
+    <div class="col-md-8 form-group">
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -56,10 +81,8 @@
 
 @section('page_css')
 <link rel="stylesheet" href="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.css') }}"  id="style-resource-3">
-<link rel="stylesheet" href="{{ asset('/assets/js/icheck/skins/minimal/_all.css') }}"  id="style-resource-5">
 @endsection
 
 @section('page_js')
 <script src="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.min.js') }}" id="script-resource-11"></script>
-<script src="{{ asset('/assets/js/icheck/icheck.min.js') }}" id="script-resource-18"></script>
 @endsection

@@ -103,22 +103,6 @@
             <i class="entypo-link"></i>
             <span>链接</span>
           </a>
-          <ul>
-            <li>
-              <a href="{{ url('/admin/link/all') }}">
-                <i class="entypo-list"></i>
-                <span>所有链接</span>
-              </a>
-            </li>
-
-            <li>
-              <a href="{{ url('/admin/link/new') }}">
-                <i class="entypo-plus"></i>
-                <span>添加链接</span>
-              </a>
-            </li>
-          </ul>
-
         </li>
 
         <!-- <li>

@@ -18,6 +18,7 @@
           </div>
           <div class="col-md-12 form-group pull-right">
             <div class="col-md-2">
+              <input type="hidden" name="old_category" value="{{join(',', array_pluck($post->categorys(), 'id'))}}">
               <button type="submit" class="btn btn-success"> 保存 </button>
               <button type="button" class="btn btn-default"> 存为草稿 </button>
             </div>

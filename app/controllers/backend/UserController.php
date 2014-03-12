@@ -16,7 +16,7 @@ class UserController extends BaseController {
 	public function getAll()
 	{
 		$users = User::paginate(15);
-		return View::make('backend.pages.User-all')->withUsers($users);
+		return View::make('backend.pages.user-all')->withUsers($users);
 	}
 
 	/**

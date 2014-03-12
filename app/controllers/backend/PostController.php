@@ -126,7 +126,7 @@ class PostController extends BaseController {
             }, $categories);
             //一次性写入多条
             //请参考：http://www.golaravel.com/docs/4.1/queries/#inserts
-            DB::table('term_relationships')->insert($termRelMultiData);    
+            TermRelation::insert($termRelMultiData);    
         }
 
         return Redirect::back()->withMessage('更新成功！');

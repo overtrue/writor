@@ -6,8 +6,8 @@
 
 ###Usage
 1. clone或者下载zip包解压到你的服务器环境
-1. 切换到composer.json同级目录，执行`composer install`
-1. 修改bootstrap/start.php中27行的环境配置，里面有说明。 
+1. 切换到`composer.json`所在目录，执行`composer install`
+1. 修改`bootstrap/start.php`中`27`行的环境配置，里面有说明。 
 1. 修改数据库配置`app/config/database.php`，如果你没改上面的start.php中的环境部分的话请修改`app/config/production/database.php`。
 1. 初始管理员的用户名为`admin`,密码为`admin`,你想修改可以在`app/database/seeds/UserTableSeeder.php`中修改初始人员信息再执行安装
 1. 安装数据库

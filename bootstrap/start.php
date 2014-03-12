@@ -25,8 +25,9 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-
-    'local'      => array('Joy.local'),
+    //这里把local中的Joy.local改成你的机器名称或者"*"，
+    //或者你删除production一行，不然你就改app/config/production/database.php了
+    'local'      => array('Joy.local'), 
     'production' => array('server1'),
 ));
 

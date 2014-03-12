@@ -16,7 +16,7 @@ class LinkController extends BaseController {
 	public function getAll()
 	{
 		$links = Link::paginate(15);
-		return View::make('backend.pages.Link-all')->withLinks($links);
+		return View::make('backend.pages.link-all')->withLinks($links);
 	}
 
 	/**

@@ -41,8 +41,8 @@ class PostController extends BaseController {
      */
     public function getNew()
     {
-        $categorys = Category::getTree();
-        return View::make('backend.pages.post-new')->withCategorys($categorys);
+        $categories = Category::getTree();
+        return View::make('backend.pages.post-new')->withCategories($categories);
     }
 
     /**
@@ -85,9 +85,9 @@ class PostController extends BaseController {
     public function getEdit($id)
     {
         $post = Post::with('termRelation')->findOrFail($id);
-        $categorys = Category::getTree();
+        $categories = Category::getTree();
 
-        return View::make('backend.pages.post-edit')->withPost($post)->withCategorys($categorys);
+        return View::make('backend.pages.post-edit')->withPost($post)->withCategories($categories);
     }
 
     /**

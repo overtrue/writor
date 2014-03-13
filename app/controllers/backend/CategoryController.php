@@ -18,10 +18,10 @@ class CategoryController extends BaseController {
      */
     public function getAll()
     {
-        $categorys = Category::getTree();
+        $categories = Category::getTree();
 
         return View::make('backend.pages.category-all')
-                     ->withCategorys($categorys);
+                     ->withCategories($categories);
     }
 
     /**
@@ -66,5 +66,31 @@ class CategoryController extends BaseController {
         $category->save();
 
         return Redirect::back()->withMessage("分类 '$category->name' 添加成功！"); 
+    }
+
+    /**
+     * 编辑分类
+     *
+     * @param integer $id 
+     *
+     * @return Response
+     */
+    public function getEdit($id)
+    {
+        $category = Category::findOrFail($id);
+        return View::make('backend.pages.category-edit')->withCategory($category);
+    }
+
+    /**
+     * 删除分类
+     *
+     * @param integer $id 
+     *
+     * @return Response
+     */
+    public function anyDelete($id)
+    {
+        $category = Category::findOrFail($id)->delete();
+        return Redirect::back()->withMessage("分类'{$category->title}'删除成功！");
     }
 }

@@ -19,7 +19,7 @@ $error = function(Exception $exception, $code = 500)
 App::error($error);
 
 // 404
-App::missing(function($exception){
+App::missing(function($exception) use ($error){
     return $error($exception, 404);
 });
 

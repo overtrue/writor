@@ -44,7 +44,7 @@ class Post extends Eloquent {
 
         //如果不同才存
         if (Input::get('old_category', '') != join(',', $categories)) {
-            $post->termRelation()->delete();
+            $this->termRelation()->delete();
             $termRelMultiData = array_map(function($categoryId) {
                 return array(
                         'object_id'   => $this->id,

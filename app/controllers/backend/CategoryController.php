@@ -50,7 +50,7 @@ class CategoryController extends BaseController {
                                    ->withInput(Input::all());
         }
         //检测别名
-        if (Category::whereSlug(Input::get('slug'))->count()) {
+        if (Input::get('slug') && Category::whereSlug(Input::get('slug'))->count()) {
             return Redirect::back()->withMessage("分类别名 '" . Input::get('slug')."' 已经存在！")
                                    ->withColor('danger')
                                    ->withInput(Input::all());
@@ -59,7 +59,7 @@ class CategoryController extends BaseController {
         // 创建分类
         $category              = new Category;
         $category->name        = Input::get('name');
-        $category->slug        = str_replace(' ','', snake_case(Input::get('name')));
+        $category->slug        = str_replace(' ','', snake_case(Input::get('slug')));
         $category->parent      = Input::get('parent_id');
         $category->description = Input::get('description');
 
@@ -78,8 +78,54 @@ class CategoryController extends BaseController {
     public function getEdit($id)
     {
         $category = Category::findOrFail($id);
+        $categories = Category::getTree();
+        return View::make('backend.pages.category-edit')
+                    ->withCategory($category)
+                    ->withCategories($categories);
+    }
 
-        return View::make('backend.pages.category-edit')->withCategory($category);
+    /**
+     * 更新
+     *
+     * @param integer $id 
+     *
+     * @return Response
+     */
+    public function postUpdate($id)
+    {
+        $category = Category::findOrFail($id);
+        $rules = array(
+                  'name'      => 'required',
+                  'slug'      => 'regex:/^[a-zA-Z 0-9_-]+$/',
+                  'parent_id' => 'integer',
+                 );
+        $validator = Validator::make(Input::all(), $rules);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator)->withInput();
+        }
+
+        // 检测分类名
+        if (Category::where('id', '!=', $id)->whereName(Input::get('name'))->count()) {
+            return Redirect::back()->withMessage("分类 '" . Input::get('name')."' 与其它分类重复！")
+                                   ->withColor('danger')
+                                   ->withInput(Input::all());
+        }
+        //检测别名
+        if (Category::where('id', '!=', $id)->whereSlug(Input::get('slug'))->count()) {
+            return Redirect::back()->withMessage("分类别名 '" . Input::get('slug')."' 与其它分类重复！")
+                                   ->withColor('danger')
+                                   ->withInput(Input::all());
+        }
+
+        // 创建分类
+        $category->name        = Input::get('name');
+        $category->slug        = str_replace(' ','', snake_case(Input::get('slug')));
+        $category->parent      = Input::get('parent_id');
+        $category->description = Input::get('description');
+
+        $category->save();
+
+        return Redirect::back()->withMessage("更新成功！"); 
     }
 
     /**
@@ -91,8 +137,8 @@ class CategoryController extends BaseController {
      */
     public function anyDelete($id)
     {
-        $category = Category::findOrFail($id)->delete();
+        Category::findOrFail($id)->delete();
         
-        return Redirect::back()->withMessage("分类'{$category->title}'删除成功！");
+        return Redirect::back()->withMessage("删除成功！");
     }
 }

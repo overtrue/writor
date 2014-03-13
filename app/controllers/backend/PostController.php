@@ -112,4 +112,18 @@ class PostController extends BaseController {
         return Redirect::back()->withMessage('更新成功！');
     }
 
+    /**
+     * 删除
+     *
+     * @param integer $id 
+     *
+     * @return Response
+     */
+    public function anyDelete($id)
+    {
+        Post::findOrFail($id)->delete();
+        
+        return Redirect::back()->withMessage("删除成功！");
+    }
+
 }

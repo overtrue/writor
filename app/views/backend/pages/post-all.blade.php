@@ -36,7 +36,7 @@
                                     <i class="entypo-pencil"></i>
                                     编辑
                                 </a>
-                                <a href="#" class="btn btn-danger btn-sm btn-icon icon-left">
+                                <a href="{{url('/admin/post/delete', array('id' => $post->id))}}" class="btn btn-danger btn-sm btn-icon icon-left" onclick="return confirm('确认删除吗？')">
                                     <i class="entypo-cancel"></i>
                                     删除
                                 </a>
@@ -63,10 +63,8 @@
 
 @section('page_css')
 <link rel="stylesheet" href="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.css') }}"  id="style-resource-3">
-<link rel="stylesheet" href="{{ asset('/assets/js/icheck/skins/minimal/_all.css') }}"  id="style-resource-5">
 @endsection
 
 @section('page_js')
 <script src="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.min.js') }}" id="script-resource-11"></script>
-<script src="{{ asset('/assets/js/icheck/icheck.min.js') }}" id="script-resource-18"></script>
 @endsection

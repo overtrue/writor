@@ -207,4 +207,4 @@ div.text-info h4 {
 
 table tr td .td-tool-bar-wrapper{position: relative;}
 table tr td .td-tool-bar {display: none;}
-table tr td:hover .td-tool-bar {display: block; position: absolute;top:10px; left:30%;background: #fff;}
+table tr td:hover .td-tool-bar {display: block; min-width:200px; position: absolute;top:10px; left:30%;background: #fff;}

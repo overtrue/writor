@@ -63,13 +63,9 @@ class PostController extends BaseController {
         $post->post_title = Input::get('title');
         $post->post_content = Input::get('content');
 
-        $category = Category::findOrFail(Input::get('category'));
-
-        $termRelation =  new TermRelation;
-        $termRelation->category_id = $category->id;
-
         $post->save();
-        $post->termRelation()->save($termRelation);
+        
+        $post->setCategories(Input::get('category', array()));
 
         return Redirect::back()->withMessage('发布成功！', link_to('admin/post/list', '查看文章列表'));
 
@@ -111,23 +107,7 @@ class PostController extends BaseController {
         $post->post_content = Input::get('content');
         $post->save();
 
-        //因为打算改成文章有多个分类，所以这样的操作是合理的
-        $categories = Input::get('category');
-        is_array($categories) || $categories = array($categories);
-
-        //如果不同才存
-        if (Input::get('old_category', '') != join(',', $categories)) {
-            $post->termRelation()->delete();
-            $termRelMultiData = array_map(function($categoryId) use ($post){
-                return array(
-                        'object_id'   => $post->id,
-                        'category_id' => $categoryId
-                       );
-            }, $categories);
-            //一次性写入多条
-            //请参考：http://www.golaravel.com/docs/4.1/queries/#inserts
-            TermRelation::insert($termRelMultiData);    
-        }
+        $post->setCategories(Input::get('category', array()));
 
         return Redirect::back()->withMessage('更新成功！');
     }

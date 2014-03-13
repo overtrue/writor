@@ -78,6 +78,7 @@ class CategoryController extends BaseController {
     public function getEdit($id)
     {
         $category = Category::findOrFail($id);
+
         return View::make('backend.pages.category-edit')->withCategory($category);
     }
 
@@ -91,6 +92,7 @@ class CategoryController extends BaseController {
     public function anyDelete($id)
     {
         $category = Category::findOrFail($id)->delete();
+        
         return Redirect::back()->withMessage("分类'{$category->title}'删除成功！");
     }
 }

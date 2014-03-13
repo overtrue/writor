@@ -18,15 +18,15 @@
           </div>
           <div class="col-md-12 form-group pull-right">
             <div class="col-md-2">
-              <input type="hidden" name="old_category" value="{{join(',', array_pluck($post->categorys(), 'id'))}}">
+              <input type="hidden" name="old_category" value="{{join(',', array_pluck($post->categories(), 'id'))}}">
               <button type="submit" class="btn btn-success"> 保存 </button>
               <button type="button" class="btn btn-default"> 存为草稿 </button>
             </div>
             <label class="col-md-1 control-label">分类: </label>
             <div class="col-md-4">
               <select name="category" class="selectboxit col-md-4">
-                @foreach($categorys as $category)
-                <option value="{{$category['id']}}" @if(in_array($category['id'], array_pluck($post->categorys(), 'id')) || Input::old('parent_id') == $category['id']) selected @endif>{{ $category['icon'] . "  " . $category['name'] }}</option>
+                @foreach($categories as $category)
+                <option value="{{$category['id']}}" @if(in_array($category['id'], array_pluck($post->categories(), 'id')) || Input::old('parent_id') == $category['id']) selected @endif>{{ $category['icon'] . "  " . $category['name'] }}</option>
                 @endforeach
               </select>
             </div>

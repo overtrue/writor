@@ -22,7 +22,7 @@
                             <label class="control-label">父分类</label>
                             <select name="parent_id" class="selectboxit">
                                 <option value="0">无</option>
-                                @foreach($categorys as $category)
+                                @foreach($categories as $category)
                                 <option value="{{$category['id']}}" @if(Input::old('parent_id') == $category['id']) selected @endif>{{ $category['icon'] . "  " . $category['name'] }}</option>
                                 @endforeach
                             </select>
@@ -55,16 +55,30 @@
                 </thead>
 
                 <tbody>
-                    @if(!count($categorys))
+                    @if(!count($categories))
                     <tr>
                         <td colspan="6">目前没有分类</td>
                     </tr>
                     @else
-                    @foreach($categorys as $category)
+                    @foreach($categories as $category)
                     <tr>
                         <td><input type="checkbox" value="{{$category['id']}}"></td>
                         <td>{{ $category['id'] }}</td>
-                        <td>{{ $category['icon'] . "  " . $category['name'] }}</td>
+                        <td>
+                            {{ $category['icon'] . "  " . $category['name'] }}
+                            <div class="td-tool-bar-wrapper">
+                                <div class="td-tool-bar">
+                                    <a href="{{url('/admin/category/edit', array('id' => $category['id']))}}" class="btn btn-default btn-sm btn-icon icon-left">
+                                        <i class="entypo-pencil"></i>
+                                        编辑
+                                    </a>
+                                    <a href="{{url('/admin/category/delete', array('id' => $category['id']))}}" class="btn btn-danger btn-sm btn-icon icon-left">
+                                        <i class="entypo-cancel"></i>
+                                        删除
+                                    </a>
+                                </div>
+                            </div>
+                        </td>
                         <td>{{ !empty($category['description']) ? $category['description'] : '无' }}</td>
                         <td>{{ $category['slug'] }}</td>
                         <td>{{ $category['count'] }}</td>

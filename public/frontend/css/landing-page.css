@@ -7,6 +7,11 @@ body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Helvetica Neue",Helvetica,"Noto Sans","ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
+.navbar-default {
+	opacity: 0.9;
+	box-shadow: 0 -5px 0 rgba(0, 0, 0, 0.03);
+}
+
 .lead {
 	font-size: 18px;
 	margin-top: 20px;

@@ -24,7 +24,7 @@
             <label class="col-md-1 control-label">文章分类: </label>
             <div class="col-md-4">
               <select name="category" class="selectboxit col-md-4">
-                @foreach($categorys as $category)
+                @foreach($categories as $category)
                 <option value="{{$category['id']}}" @if(Input::old('parent_id') == $category['id']) selected @endif>{{ $category['icon'] . "  " . $category['name'] }}</option>
                 @endforeach
               </select>

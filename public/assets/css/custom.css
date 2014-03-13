@@ -204,3 +204,7 @@ div.text-info h4 {
  * 表格
  */
 .do {width:20%; min-width: 230px;}
+
+table tr td .td-tool-bar-wrapper{position: relative;}
+table tr td .td-tool-bar {display: none;}
+table tr td:hover .td-tool-bar {display: inline; position: absolute;top:0; left:20%;background: #fff;}

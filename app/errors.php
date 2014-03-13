@@ -10,7 +10,7 @@ $error = function(Exception $exception, $code = 500)
                                 'error_code' => $code,
                                 'error_desc' => $exception->getMessage() . ' at file' . $exception->getFile() . ' line:' . $exception->getLine(),
                                ));
-    } else {
+    } elseif (App::environment() == 'production') {
         return View::make($code);
     }
 };

@@ -205,6 +205,28 @@ div.text-info h4 {
  */
 .do {width:20%; min-width: 230px;}
 
+/* 兼容解决方案：菱形 */
+.diamond{
+-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865475, M12=-0.7071067811865477, M21=0.7071067811865477, M22=0.7071067811865475, SizingMethod='auto expand')";
+filter: progid:DXImageTransform.Microsoft.Matrix(
+  M11=0.7071067811865475,
+  M12=-0.7071067811865477,
+  M21=0.7071067811865477,
+  M22=0.7071067811865475,
+  SizingMethod='auto expand'
+);
+-moz-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform:rotate(45deg);
+}
+:root .diamond{filter:none9;}
+
+/* Tips 组件 */
+.tips{}
+.tips-angle{position:absolute;display:block;width:8px;height:8px;font-size:0;background:#fff;border-left:1px solid #cfcfcf;border-top:1px solid #cfcfcf;top:-5px;top:-6px9;left:10px;}
+
 table tr td .td-tool-bar-wrapper{position: relative;}
-table tr td .td-tool-bar {display: none;}
-table tr td:hover .td-tool-bar {display: block; min-width:200px; position: absolute;top:10px; left:30%;background: #fff;}
+table tr td .td-tool-bar {display: none;position: absolute;top:10px; left:30%;background: #fff; border:1px solid #cfcfcf;padding:10px; min-width: 170px; box-shadow: #ccc 0 0 5px;}
+table tr td:hover .td-tool-bar {display: block;}

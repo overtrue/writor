@@ -32,14 +32,17 @@
                         {{$post->post_title}}
                         <div class="td-tool-bar-wrapper">
                             <div class="td-tool-bar">
-                                <a href="{{url('/admin/post/edit', array('id' => $post->id))}}" class="btn btn-default btn-sm btn-icon icon-left">
-                                    <i class="entypo-pencil"></i>
-                                    编辑
-                                </a>
-                                <a href="{{url('/admin/post/delete', array('id' => $post->id))}}" class="btn btn-danger btn-sm btn-icon icon-left" onclick="return confirm('确认删除吗？')">
-                                    <i class="entypo-cancel"></i>
-                                    删除
-                                </a>
+                            <div class="tips-text">
+                                    <a href="{{url('/admin/post/edit', array('id' => $post->id))}}" class="btn btn-default btn-sm btn-icon icon-left">
+                                        <i class="entypo-pencil"></i>
+                                        编辑
+                                    </a>
+                                    <a href="{{url('/admin/post/delete', array('id' => $post->id))}}" class="btn btn-danger btn-sm btn-icon icon-left" onclick="return confirm('确认删除吗？')">
+                                        <i class="entypo-cancel"></i>
+                                        删除
+                                    </a>
+                                </div>
+                                <div class="tips-angle diamond"></div>
                             </div>
                         </div>
                     </td>

@@ -2,7 +2,7 @@
 
 class Category extends Eloquent {
 
-    protected $table    = 'categorys';
+    protected $table    = 'categories';
     public  $timestamps = false;
     protected $fillable = array('name', 'slug');
 

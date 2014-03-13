@@ -21,13 +21,13 @@ class Post extends Eloquent {
      *
      * @return object
      */
-    public function categorys($toArray = true)
+    public function categories($toArray = true)
     {
-        $categorys = array();
+        $categories = array();
         foreach ($this->term_relation as $termRelation) {
-            $categorys[] = $toArray ? $termRelation->category->toArray() : $termRelation->category;
+            $categories[] = $toArray ? $termRelation->category->toArray() : $termRelation->category;
         }
 
-        return $categorys;
+        return $categories;
     }
 }

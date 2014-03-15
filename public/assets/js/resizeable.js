@@ -63,7 +63,7 @@ function resizable(breakpoint)
 	
 	
 	// Trigger Event
-	$(window).trigger('neon.resize');
+	$(window).trigger('.resize');
 	
 	
 	// Fit main content height

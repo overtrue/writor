@@ -1,5 +1,5 @@
 /**
- *  Neon Main JavaScript File
+ *   Main JavaScript File
  *
  *  Theme by: www.laborator.co
  **/
@@ -787,7 +787,7 @@ var public_vars = public_vars || {};
           
           $this.data('bootstrapWizard').show( _index );
           
-          /*$(window).on('neon.resize', function()
+          /*$(window).on('.resize', function()
           {
             $this.data('bootstrapWizard').show( _index );
           });*/

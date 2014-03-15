@@ -4,16 +4,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Neon Admin Panel" />
-    <meta name="author" content="Laborator.co" />
+    <meta name="description" content="writor" />
+    <meta name="author" content="writor.me" />
     <title>Writor | 登录</title>
     <link rel="stylesheet" href="{{asset('assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css')}}"  id="style-resource-1">
     <link rel="stylesheet" href="{{asset('assets/css/font-icons/entypo/css/entypo.css')}}"  id="style-resource-2">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic"  id="style-resource-3">
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}"  id="style-resource-4">
-    <link rel="stylesheet" href="{{asset('assets/css/neon-core.min.css')}}"  id="style-resource-5">
-    <link rel="stylesheet" href="{{asset('assets/css/neon-theme.min.css')}}"  id="style-resource-6">
-    <link rel="stylesheet" href="{{asset('assets/css/neon-forms.min.css')}}"  id="style-resource-7">
+    <link rel="stylesheet" href="{{asset('assets/css/core.css')}}"  id="style-resource-5">
+    <link rel="stylesheet" href="{{asset('assets/css/forms.css')}}"  id="style-resource-7">
     <link rel="stylesheet" href="{{asset('assets/css/custom.css')}}"  id="style-resource-8">
     <script src="{{asset('assets/js/jquery-1.11.0.min.js')}}"></script>
     <script type="text/javascript">var baseurl = "{{ url('/') }}";</script>
@@ -85,9 +84,9 @@
     <script src="{{asset('assets/js/bootstrap.js')}}" id="script-resource-3"></script>
     <script src="{{asset('assets/js/joinable.js')}}" id="script-resource-4"></script>
     <script src="{{asset('assets/js/resizeable.js')}}" id="script-resource-5"></script>
-    <script src="{{asset('assets/js/neon-api.js')}}" id="script-resource-6"></script>
+    <script src="{{asset('assets/js/api.js')}}" id="script-resource-6"></script>
     <script src="{{asset('assets/js/cookies.min.js')}}" id="script-resource-7"></script>
     <script src="{{asset('assets/js/jquery.validate.min.js')}}" id="script-resource-8"></script>
-    <script src="{{asset('assets/js/neon-login.js')}}" id="script-resource-9"></script>
+    <script src="{{asset('assets/js/login.js')}}" id="script-resource-9"></script>
 </body>
 </html>

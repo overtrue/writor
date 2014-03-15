@@ -5,17 +5,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Neon Admin Panel" />
-  <meta name="author" content="Laborator.co" />
+  <meta name="description" content="Writor" />
+  <meta name="author" content="writor.me" />
 
   <title>Writor</title>
 
   <link rel="stylesheet" href="{{ asset('/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}"  id="style-resource-1">
   <link rel="stylesheet" href="{{ asset('/assets/css/font-icons/entypo/css/entypo.css') }}"  id="style-resource-2">
   <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}"  id="style-resource-4">
-  <link rel="stylesheet" href="{{ asset('/assets/css/neon-core.min.css') }}"  id="style-resource-5">
-  <link rel="stylesheet" href="{{ asset('/assets/css/neon-theme.min.css') }}"  id="style-resource-6">
-  <link rel="stylesheet" href="{{ asset('/assets/css/neon-forms.min.css') }}"  id="style-resource-7">
+  <link rel="stylesheet" href="{{ asset('/assets/css/core.css') }}"  id="style-resource-5">
+  <link rel="stylesheet" href="{{ asset('/assets/css/forms.css') }}"  id="style-resource-7">
   <link rel="stylesheet" href="{{ asset('/assets/css/custom.css') }}"  id="style-resource-8">
   @yield('page_css')
   <script src="{{ asset('/assets/js/jquery-1.11.0.min.js') }}"></script>
@@ -247,9 +246,9 @@
       @yield('content')
       <!-- Footer -->
       <footer class="main">
-        &copy; {{date('Y')}} <strong>Neon</strong>
-        Admin Theme by
-        <a href="http://laborator.co" target="_blank">Laborator</a>
+        &copy; {{date('Y')}} <strong>Writor</strong>
+        Powered by 
+        <a href="http://writor.me" target="_blank">Writor Blog Framework</a>
       </footer>
     </div>
   </div>
@@ -259,7 +258,7 @@
   <script src="{{ asset('/assets/js/bootstrap.js') }}" id="script-resource-3"></script>
   <script src="{{ asset('/assets/js/joinable.js') }}" id="script-resource-4"></script>
   <script src="{{ asset('/assets/js/resizeable.js') }}" id="script-resource-5"></script>
-  <script src="{{ asset('/assets/js/neon-api.js') }}" id="script-resource-6"></script>
+  <script src="{{ asset('/assets/js/api.js') }}" id="script-resource-6"></script>
   <script src="{{ asset('/assets/js/cookies.min.js') }}" id="script-resource-7"></script>
   <script src="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.min.js') }}" id="script-resource-11"></script>
   <script src="{{ asset('/assets/js/admin-common.js') }}" id="script-resource-23"></script>

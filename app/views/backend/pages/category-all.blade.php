@@ -73,10 +73,12 @@
                                             <i class="entypo-pencil"></i>
                                             编辑
                                         </a>
+                                        @if($category['id'] != 1)
                                         <a href="{{url('/admin/category/delete', array('id' => $category['id']))}}" class="btn btn-danger btn-sm btn-icon icon-left" onclick="return confirm('确认删除吗？')">
                                             <i class="entypo-cancel"></i>
                                             删除
                                         </a>
+                                        @endif
                                     </div>
                                     <div class="tips-angle diamond"></div>
                                 </div>

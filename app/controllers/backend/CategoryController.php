@@ -7,6 +7,7 @@ use \Category;
 use \Input;
 use \Redirect;
 use \Validator;
+use \TermRelation;
 
 class CategoryController extends BaseController {
 
@@ -137,8 +138,12 @@ class CategoryController extends BaseController {
      */
     public function anyDelete($id)
     {
+        if ($id == 1) {
+            return Redirect::back('系统默认分类不允许删除！');
+        }
+
         Category::findOrFail($id)->delete();
-        
+        TermRelation::where('category_id', $id)->update('category_id', 1);
         return Redirect::back()->withMessage("删除成功！");
     }
 }

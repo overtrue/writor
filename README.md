@@ -8,26 +8,30 @@
 ---
 1. clone writor到你的服务器环境
 
-```
-cd www #你的服务器放网站的目录
-git clone https://github.com/joychao/writor.git
-```
+	```
+	cd www #你的服务器放网站的目录
+	git clone https://github.com/joychao/writor.git
+	```
+
 1. 切换到`composer.json`所在目录，使用composer安装项目
 
-> 如果没有安装过composer请先安装：<br>
+	> 如果没有安装过composer请先安装：<br>
  	linux/OSX: [https://getcomposer.org/doc/00-intro.md#installation-nix](https://getcomposer.org/doc/00-intro.md#installation-nix)<br>
  	windows: [https://getcomposer.org/doc/00-intro.md#installation-windows](https://getcomposer.org/doc/00-intro.md#installation-windows)
 
-```
-cd www/writor
-composer install
-```
+	```
+	cd www/writor
+	composer install
+	```
+
 1. 修改`bootstrap/start.php`中`27`行的环境配置，里面有说明。 
 1. 修改数据库配置`app/config/database.php`，如果你没改上面的start.php中的环境部分的话请修改`app/config/production/database.php`。
 1. 修改`app/storage/` 目录权限为可写,*nix下 执行：
+
     ```
     sudo chmod -R 755 app/storage/ 
     ```
+
 1. 初始管理员的用户名为`admin`,密码为`admin`,你想修改可以在`app/database/seeds/UserTableSeeder.php`中修改初始人员信息再执行安装
 1. 安装数据库
 
@@ -36,9 +40,9 @@ composer install
     php artisan db:seed #初始化管理员
     ```
 
-1.开启重写模块:使用`apache`请开启`mod_rewrite`,使用`nginx`同学请参考这个配置示例：[https://gist.github.com/davzie/3938080](laravel_virtualhost_nginx.conf)
+1. 开启重写模块:使用`apache`请开启`mod_rewrite`,使用`nginx`同学请参考这个配置示例：[https://gist.github.com/davzie/3938080](laravel_virtualhost_nginx.conf)
 
-1.那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
+1. 那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
 
 ###友情提示
 ---

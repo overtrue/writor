@@ -13,6 +13,7 @@ cd www #你的服务器放网站的目录
 git clone https://github.com/joychao/writor.git
 ```
 1. 切换到`composer.json`所在目录，使用composer安装项目
+
 > 如果没有安装过composer请先安装：<br>
  	linux/OSX: [https://getcomposer.org/doc/00-intro.md#installation-nix](https://getcomposer.org/doc/00-intro.md#installation-nix)<br>
  	windows: [https://getcomposer.org/doc/00-intro.md#installation-windows](https://getcomposer.org/doc/00-intro.md#installation-windows)

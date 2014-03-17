@@ -49,8 +49,10 @@
                     <td>
                         @if(!count($post->categories()))
                             无
-                        @else
+                        @elseif(count($post->categories()))
                             {{join('、', array_fetch($post->categories(), 'name'))}}
+                        @else
+                        无
                         @endif
                     </td>
                     <td>{{$post->view_count}}</td>

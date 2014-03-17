@@ -25,7 +25,7 @@ class Post extends Eloquent {
     {
         $categories = array();
         foreach ($this->term_relation as $termRelation) {
-            $categories[] = $toArray ? $termRelation->category->toArray() : $termRelation->category;
+            $categories[] = $toArray && $termRelation->category ? $termRelation->category->toArray() : $termRelation->category;
         }
 
         return $categories;

@@ -13,7 +13,7 @@
   <body>
     <div id="wrapper">
       <h1>NOT FOUND!</h1>
-      <h2><em>400</em> 页面未找到！</h2>
+      <h2><em>404</em> 页面未找到！</h2>
     </div>
   </body>
 </html>

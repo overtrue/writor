@@ -78,14 +78,6 @@ var public_vars = public_vars || {};
         sensitiverail: true
       };
       
-      public_vars.$body.find('.dropdown .scroller').niceScroll(nicescroll_defaults);
-      
-      $(".dropdown").on("shown.bs.dropdown", function ()
-      {
-        $(".scroller").getNiceScroll().resize();
-        $(".scroller").getNiceScroll().show();
-      });
-      
       var fixed_sidebar = $(".sidebar-menu.fixed");
       
       if(fixed_sidebar.length == 1)
@@ -113,38 +105,6 @@ var public_vars = public_vars || {};
           }, 500);
         });
       }
-    }
-    
-    // Scrollable
-    if($.isFunction($.fn.slimScroll))
-    {
-      $(".scrollable").each(function(i, el)
-      {
-        var $this = $(el),
-          height = attrDefault($this, 'height', $this.height());
-        
-        if($this.is(':visible'))
-        { 
-          $this.removeClass('scrollable');
-          
-          if($this.height() < parseInt(height, 10))
-          {
-            height = $this.outerHeight(true) + 10;
-          }
-          
-          $this.addClass('scrollable');
-        }
-        
-        $this.css({maxHeight: ''}).slimScroll({
-          height: height,
-          position: attrDefault($this, 'scroll-position', 'right'),
-          color: attrDefault($this, 'rail-color', '#000'),
-          size: attrDefault($this, 'rail-width', 6),
-          borderRadius: attrDefault($this, 'rail-radius', 3),
-          opacity: attrDefault($this, 'rail-opacity', .3),
-          alwaysVisible: parseInt(attrDefault($this, 'autohide', 1), 10) == 1 ? false : true
-        });
-      });
     }
     
     // Panels
@@ -297,97 +257,6 @@ var public_vars = public_vars || {};
     });
 
     
-    // jQuery Knob
-    if($.isFunction($.fn.knob))
-    {   
-      $(".knob").knob({
-        change: function (value) {
-        },
-        release: function (value) {
-        },
-        cancel: function () {
-        },
-        draw: function () {
-        
-          if (this.$.data('skin') == 'tron') {
-        
-            var a = this.angle(this.cv) // Angle
-              ,
-              sa = this.startAngle // Previous start angle
-              ,
-              sat = this.startAngle // Start angle
-              ,
-              ea // Previous end angle
-              , eat = sat + a // End angle
-              ,
-              r = 1;
-        
-            this.g.lineWidth = this.lineWidth;
-        
-            this.o.cursor && (sat = eat - 0.3) && (eat = eat + 0.3);
-        
-            if (this.o.displayPrevious) {
-              ea = this.startAngle + this.angle(this.v);
-              this.o.cursor && (sa = ea - 0.3) && (ea = ea + 0.3);
-              this.g.beginPath();
-              this.g.strokeStyle = this.pColor;
-              this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sa, ea, false);
-              this.g.stroke();
-            }
-        
-            this.g.beginPath();
-            this.g.strokeStyle = r ? this.o.fgColor : this.fgColor;
-            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth, sat, eat, false);
-            this.g.stroke();
-        
-            this.g.lineWidth = 2;
-            this.g.beginPath();
-            this.g.strokeStyle = this.o.fgColor;
-            this.g.arc(this.xy, this.xy, this.radius - this.lineWidth + 1 + this.lineWidth * 2 / 3, 0, 2 * Math.PI, false);
-            this.g.stroke();
-        
-            return false;
-          }
-        }
-      });
-    }
-    
-    // Radio Toggle
-    if($.isFunction($.fn.bootstrapSwitch))
-    {
-    
-      $('.make-switch.is-radio').on('switch-change', function () {
-            $('.make-switch.is-radio').bootstrapSwitch('toggleRadioState');
-        }); 
-    }
-    
-    // Select2 Dropdown replacement
-    if($.isFunction($.fn.select2))
-    {
-      $(".select2").each(function(i, el)
-      {
-        var $this = $(el),
-          opts = {
-            allowClear: attrDefault($this, 'allowClear', false)
-          };
-        
-        $this.select2(opts);
-        $this.addClass('visible');
-        
-        //$this.select2("open");
-      });
-      
-      if($.isFunction($.fn.niceScroll))
-      {
-        $(".select2-results").niceScroll({
-          cursorcolor: '#d4d4d4',
-          cursorborder: '1px solid #ccc',
-          railpadding: {right: 3}
-        });
-      }
-    }
-    
-    
     // SelectBoxIt Dropdown replacement
     if($.isFunction($.fn.selectBoxIt))
     {
@@ -512,130 +381,6 @@ var public_vars = public_vars || {};
       });
     }
     
-    // Colorpicker
-    if($.isFunction($.fn.colorpicker))
-    {
-      $(".colorpicker").each(function(i, el)
-      {
-        var $this = $(el),
-          opts = {
-            //format: attrDefault($this, 'format', false)
-          },
-          $n = $this.next(),
-          $p = $this.prev(),
-          
-          $preview = $this.siblings('.input-group-addon').find('.color-preview');
-        
-        $this.colorpicker(opts);
-        
-        if($n.is('.input-group-addon') && $n.has('a'))
-        {
-          $n.on('click', function(ev)
-          {
-            ev.preventDefault();
-            
-            $this.colorpicker('show');
-          });
-        }
-        
-        if($p.is('.input-group-addon') && $p.has('a'))
-        {
-          $p.on('click', function(ev)
-          {
-            ev.preventDefault();
-            
-            $this.colorpicker('show');
-          });
-        }
-        
-        if($preview.length)
-        {
-          $this.on('changeColor', function(ev){
-            
-            $preview.css('background-color', ev.color.toHex());
-          });
-          
-          if($this.val().length)
-          {
-            $preview.css('background-color', $this.val());
-          }
-        }
-      });
-    }
-    
-    // Input Mask
-    if($.isFunction($.fn.inputmask))
-    {
-      $("[data-mask]").each(function(i, el)
-      {
-        var $this = $(el),
-          mask = $this.data('mask').toString(),
-          opts = {
-            numericInput: attrDefault($this, 'numeric', false),
-            radixPoint: attrDefault($this, 'radixPoint', ''),
-            rightAlignNumerics: attrDefault($this, 'numericAlign', 'left') == 'right'
-          },
-          placeholder = attrDefault($this, 'placeholder', ''),
-          is_regex = attrDefault($this, 'isRegex', '');
-        
-          
-        if(placeholder.length)
-        {
-          opts[placeholder] = placeholder;
-        }
-        
-        switch(mask.toLowerCase())
-        {
-          case "phone":
-            mask = "(999) 999-9999";
-            break;
-            
-          case "currency":
-          case "rcurrency":
-          
-            var sign = attrDefault($this, 'sign', '$');;
-            
-            mask = "999,999,999.99";
-            
-            if($this.data('mask').toLowerCase() == 'rcurrency')
-            {
-              mask += ' ' + sign;
-            }
-            else
-            {
-              mask = sign + ' ' + mask;
-            }
-            
-            opts.numericInput = true;
-            opts.rightAlignNumerics = false;
-            opts.radixPoint = '.';
-            break;
-            
-          case "email":
-            mask = 'Regex';
-            opts.regex = "[a-zA-Z0-9._%-]+@[a-zA-Z0-9-]+\\.[a-zA-Z]{2,4}";
-            break;
-          
-          case "fdecimal":
-            mask = 'decimal';
-            $.extend(opts, {
-              autoGroup   : true,
-              groupSize   : 3,
-              radixPoint    : attrDefault($this, 'rad', '.'),
-              groupSeparator  : attrDefault($this, 'dec', ',')
-            });
-        }
-        
-        if(is_regex)
-        {
-          opts.regex = mask;
-          mask = 'Regex';
-        }
-        
-        $this.inputmask(mask, opts);
-      });
-    }
-    
     // Form Validation
     if($.isFunction($.fn.validate))
     {
@@ -726,15 +471,6 @@ var public_vars = public_vars || {};
       });
     }
     
-    // Replaced File Input
-    $("input.file2[type=file]").each(function(i, el)
-    {
-      var $this = $(el),
-        label = attrDefault($this, 'label', 'Browse');
-      
-      $this.bootstrapFileInput(label);
-    });
-    
     // Jasny Bootstrap | Fileinput
     if($.isFunction($.fn.fileinput))
     {
@@ -745,53 +481,6 @@ var public_vars = public_vars || {};
     if($.isFunction($.fn.multiSelect))
     {
       $(".multi-select").multiSelect();
-    }
-    
-    // Form Wizard
-    if($.isFunction($.fn.bootstrapWizard))
-    {
-      $(".form-wizard").each(function(i, el)
-      {
-        var $this = $(el),        
-          $progress = $this.find(".steps-progress div"),
-          _index = $this.find('> ul > li.active').index();
-        
-        // Validation
-        var checkFormWizardValidaion = function(tab, navigation, index)
-          {
-              if($this.hasClass('validate'))
-              {
-              var $valid = $this.valid();
-              
-              if( ! $valid)
-              {
-                $this.data('validator').focusInvalid();
-                return false;
-              }
-            }
-            
-              return true;
-          };
-        
-        
-        $this.bootstrapWizard({
-          tabClass: "",
-            onTabShow: function($tab, $navigation, index)
-            {
-            setCurrentProgressTab($this, $navigation, $tab, $progress, index);
-            },
-            
-            onNext: checkFormWizardValidaion,
-            onTabClick: checkFormWizardValidaion
-          });
-          
-          $this.data('bootstrapWizard').show( _index );
-          
-          /*$(window).on('.resize', function()
-          {
-            $this.data('bootstrapWizard').show( _index );
-          });*/
-      });
     }
     
     // Modal Static
@@ -1214,14 +903,7 @@ function setCurrentProgressTab($rootwizard, $nav, $tab, $progress, index)
   }
   else
   {
-    if(rtl())
-    {
-      $progress.width( $progress.parent().outerWidth(true) - $tab.prev().position().left - $tab.find('span').width()/2 );
-    }
-    else
-    {
       $progress.width( ((index-1) /(items-1)) * 100 + '%' ); //$progress.width( $tab.prev().position().left - $tab.find('span').width()/2 );
-    }
   }
   
   
@@ -1281,32 +963,6 @@ function enableXOverflow()
   public_vars.$body.removeClass('overflow-x-disabled');
 }
 
-
-// Page Transitions
-function init_page_transitions()
-{
-  fit_main_content_height();
-  
-  var transitions = ['page-fade', 'page-left-in', 'page-right-in', 'page-fade-only'];
-  
-  for(var i in transitions)
-  {
-    var transition_name = transitions[i];
-    
-    if(public_vars.$body.hasClass(transition_name))
-    {
-      public_vars.$body.addClass(transition_name + '-init')
-      
-      setTimeout(function()
-      {
-        public_vars.$body.removeClass(transition_name + ' ' + transition_name + '-init');
-        
-      }, 850);
-      
-      return;
-    }
-  }
-}
 
 
 // Page Visibility API

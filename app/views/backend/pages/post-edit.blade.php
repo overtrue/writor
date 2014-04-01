@@ -44,16 +44,16 @@
 @endsection
 
 @section('page_css')
-<link rel="stylesheet" href="{{ asset('/assets/css/prettify.css') }}">
-<link rel="stylesheet" href="{{ asset('/assets/css/editor.css') }}">
-<link rel="stylesheet" href="{{ asset('/assets/css/markdown.css') }}">
-<link rel="stylesheet" href="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.css') }}"  id="style-resource-3">
+<link rel="stylesheet" href="{{ asset('/backend/css/prettify.css') }}">
+<link rel="stylesheet" href="{{ asset('/backend/css/editor.css') }}">
+<link rel="stylesheet" href="{{ asset('/backend/css/markdown.css') }}">
+<link rel="stylesheet" href="{{ asset('/backend/js/selectboxit/jquery.selectBoxIt.css') }}"  id="style-resource-3">
 @endsection
 
 @section('page_js')
-<script src="{{ asset('/assets/js/prettify.js') }}"></script>
-<script src="{{ asset('/assets/js/marked.js') }}"></script>
-<script src="{{ asset('/assets/js/editor.js') }}"></script>
-<script src="{{ asset('/assets/js/post.js') }}"></script>
+<script src="{{ asset('/backend/js/prettify.js') }}"></script>
+<script src="{{ asset('/backend/js/marked.js') }}"></script>
+<script src="{{ asset('/backend/js/editor.js') }}"></script>
+<script src="{{ asset('/backend/js/post.js') }}"></script>
 
 @endsection

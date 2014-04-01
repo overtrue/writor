@@ -10,17 +10,17 @@
 
   <title>Writor</title>
 
-  <link rel="stylesheet" href="{{ asset('/assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}"  id="style-resource-1">
-  <link rel="stylesheet" href="{{ asset('/assets/css/font-icons/entypo/css/entypo.css') }}"  id="style-resource-2">
-  <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}"  id="style-resource-4">
-  <link rel="stylesheet" href="{{ asset('/assets/css/core.css') }}"  id="style-resource-5">
-  <link rel="stylesheet" href="{{ asset('/assets/css/forms.css') }}"  id="style-resource-7">
-  <link rel="stylesheet" href="{{ asset('/assets/css/custom.css') }}"  id="style-resource-8">
+  <link rel="stylesheet" href="{{ asset('/backend/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css') }}"  id="style-resource-1">
+  <link rel="stylesheet" href="{{ asset('/backend/css/font-icons/entypo/css/entypo.css') }}"  id="style-resource-2">
+  <link rel="stylesheet" href="{{ asset('/backend/css/bootstrap.min.css') }}"  id="style-resource-4">
+  <link rel="stylesheet" href="{{ asset('/backend/css/core.css') }}"  id="style-resource-5">
+  <link rel="stylesheet" href="{{ asset('/backend/css/forms.css') }}"  id="style-resource-7">
+  <link rel="stylesheet" href="{{ asset('/backend/css/custom.css') }}"  id="style-resource-8">
   @yield('page_css')
-  <script src="{{ asset('/assets/js/jquery-1.11.0.min.js') }}"></script>
+  <script src="{{ asset('/backend/js/jquery-1.11.0.min.js') }}"></script>
 
   <!--[if lt IE 9]>
-  <script src="{{ asset('/assets/js/ie8-responsive-file-warning.js') }}"></script>
+  <script src="{{ asset('/backend/js/ie8-responsive-file-warning.js') }}"></script>
   <![endif]-->
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -253,15 +253,15 @@
     </div>
   </div>
 
-  <script src="{{ asset('/assets/js/gsap/main-gsap.js') }}" id="script-resource-1"></script>
-  <script src="{{ asset('/assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}" id="script-resource-2"></script>
-  <script src="{{ asset('/assets/js/bootstrap.js') }}" id="script-resource-3"></script>
-  <script src="{{ asset('/assets/js/joinable.js') }}" id="script-resource-4"></script>
-  <script src="{{ asset('/assets/js/resizeable.js') }}" id="script-resource-5"></script>
-  <script src="{{ asset('/assets/js/api.js') }}" id="script-resource-6"></script>
-  <script src="{{ asset('/assets/js/cookies.min.js') }}" id="script-resource-7"></script>
-  <script src="{{ asset('/assets/js/selectboxit/jquery.selectBoxIt.min.js') }}" id="script-resource-11"></script>
-  <script src="{{ asset('/assets/js/admin-common.js') }}" id="script-resource-23"></script>
+  <script src="{{ asset('/backend/js/gsap/main-gsap.js') }}" id="script-resource-1"></script>
+  <script src="{{ asset('/backend/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js') }}" id="script-resource-2"></script>
+  <script src="{{ asset('/backend/js/bootstrap.js') }}" id="script-resource-3"></script>
+  <script src="{{ asset('/backend/js/joinable.js') }}" id="script-resource-4"></script>
+  <script src="{{ asset('/backend/js/resizeable.js') }}" id="script-resource-5"></script>
+  <script src="{{ asset('/backend/js/api.js') }}" id="script-resource-6"></script>
+  <script src="{{ asset('/backend/js/cookies.min.js') }}" id="script-resource-7"></script>
+  <script src="{{ asset('/backend/js/selectboxit/jquery.selectBoxIt.min.js') }}" id="script-resource-11"></script>
+  <script src="{{ asset('/backend/js/admin-common.js') }}" id="script-resource-23"></script>
   <script type="text/javascript">
   $(document).ready(function(){
     var currentAction = $('#main-menu a[href="{{URL::current()}}"]:last');

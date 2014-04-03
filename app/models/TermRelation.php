@@ -15,4 +15,14 @@ class TermRelation extends Eloquent {
         return $this->belongsTo('Category', 'category_id');
     }
 
+    /**
+     * 文件
+     *
+     * @return object
+     */
+    public function post()
+    {
+        return $this->belongsTo('Post', 'object_id');
+    }
+
 }

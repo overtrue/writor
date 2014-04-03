@@ -1,0 +1,232 @@
+/**
+ *
+ * Apply Here your Custom CSS
+ *
+*/
+
+body {
+  font:13px/22px  "Helvetica Neue",Helvetica,"Noto Sans","ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color:#333;
+}
+
+.inline-block {display: inline-block;}
+.hidden {display: none;}
+
+/* logo */
+.logo h1 {color: #fff; margin: 0;}
+
+/* 边栏固定 */
+.page-container .sidebar-menu {position: fixed;top:0;}
+
+/* overwrite */
+.form-horizontal .form-group {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin:0;
+}
+.breadcrumb {margin-bottom: 0px;}
+
+/* tips */
+div.tips {
+  margin: 2px 0;
+  padding: 8px 20px;
+  border-left: 3px solid #eeeeee;
+}
+div.tips a.pull-right {
+  font-size: 12px;
+  margin-right: -10px;
+  line-height: 20px;
+}
+div.tips ul {
+    margin-left: -30px;
+    margin-bottom: 0;
+}
+
+div.tips i {
+    float: right !important;
+    font-style: normal;
+    cursor:default;
+}
+
+div.tips h4 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+div.tips p:last-child {
+  margin-bottom: 0;
+}
+div.text-danger {
+  border-color: #eed3d7;
+  background-color: #fdf7f7;
+}
+div.text-danger h4 {
+  color: #b94a48;
+}
+div.text-warning {
+  border-color: #faebcc;
+  background-color: #faf8f0;
+}
+div.text-warning h4 {
+  color: #8a6d3b;
+}
+div.text-info {
+  border-color: #bce8f1;
+  background-color: #f4f8fa;
+}
+div.text-info h4 {
+  color: #34789a;
+}
+
+/* pad */
+.pad-x-5,
+.pad-x-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.pad-x-10,
+.pad-x-10 {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.pad-x-20,
+.pad-x-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.pad-x-30,
+.pad-x-30 {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+.pad-x-40,
+.pad-x-40 {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+.pad-x-50,
+.pad-x-50 {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.pad-y-5,
+.pad-y-5 {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.pad-y-10,
+.pad-y-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.pad-y-20,
+.pad-y-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.pad-y-30,
+.pad-y-30 {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+.pad-y-40,
+.pad-y-40 {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.pad-y-50,
+.pad-y-50 {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+.mg-x-5,
+.mg-x-5 {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.mg-x-10,
+.mg-x-10 {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.mg-x-20,
+.mg-x-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.mg-x-30,
+.mg-x-30 {
+  margin-left: 30px;
+  margin-right: 30px;
+}
+.mg-x-40,
+.mg-x-40 {
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.mg-x-50,
+.mg-x-50 {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+.mg-y-5,
+.mg-y-5 {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.mg-y-10,
+.mg-y-10 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.mg-y-20,
+.mg-y-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.mg-y-30,
+.mg-y-30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.mg-y-40,
+.mg-y-40 {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+.mg-y-50,
+.mg-y-50 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+/**
+ * 表格
+ */
+.do {width:20%; min-width: 230px;}
+
+/* 兼容解决方案：菱形 */
+.diamond{
+-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.7071067811865475, M12=-0.7071067811865477, M21=0.7071067811865477, M22=0.7071067811865475, SizingMethod='auto expand')";
+filter: progid:DXImageTransform.Microsoft.Matrix(
+  M11=0.7071067811865475,
+  M12=-0.7071067811865477,
+  M21=0.7071067811865477,
+  M22=0.7071067811865475,
+  SizingMethod='auto expand'
+);
+-moz-transform: rotate(45deg);
+-o-transform: rotate(45deg);
+-webkit-transform: rotate(45deg);
+-ms-transform: rotate(45deg);
+transform:rotate(45deg);
+}
+:root .diamond{filter:none9;}
+
+/* Tips 组件 */
+.tips{}
+.tips-angle{position:absolute;display:block;width:8px;height:8px;font-size:0;background:#fff;border-left:1px solid #cfcfcf;border-top:1px solid #cfcfcf;top:-5px;top:-6px9;left:10px;}
+
+table tr td .td-tool-bar-wrapper{position: relative;}
+table tr td .td-tool-bar {display: none;position: absolute;top:10px; left:30%;background: #fff; border:1px solid #cfcfcf;padding:10px; min-width: 170px; box-shadow: #ccc 0 0 5px;}
+table tr td:hover .td-tool-bar {display: block;}

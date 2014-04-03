@@ -7,7 +7,7 @@
 @endsection
 @section('content')
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-7">
         <div class="panel panel-primary" data-collapsed="0">
             <div class="panel-body">
                 <form action="{{url('/admin/user/create')}}" method="post" accept-charset="utf-8" class="form-horizontal">

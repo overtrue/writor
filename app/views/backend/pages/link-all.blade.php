@@ -75,6 +75,9 @@
                 @endif
             </tbody>
         </table>
+        <div class="pull-right">
+            {{$links->links()}}
+        </div>
     </div>
 </div>
 @endsection

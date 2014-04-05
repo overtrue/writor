@@ -55,6 +55,9 @@
                 @endif
             </tbody>
         </table>
+        <div class="pull-right">
+            {{$comments->links()}}
+        </div>
     </div>
 </div>
 @endsection

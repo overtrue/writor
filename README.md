@@ -40,7 +40,7 @@
     php artisan db:seed #初始化管理员
     ```
 
-1. 开启重写模块:使用`apache`请开启`mod_rewrite`,使用`nginx`同学请参考这个配置示例：[https://gist.github.com/davzie/3938080](laravel_virtualhost_nginx.conf)
+1. 开启重写模块:使用`apache`请开启`mod_rewrite`,使用`nginx`同学请参考这个配置示例：[https://gist.github.com/davzie/3938080](https://gist.github.com/davzie/3938080)
 
 1. 那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
 

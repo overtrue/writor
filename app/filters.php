@@ -13,7 +13,6 @@
 
 App::before(function($request)
 {
-	//
 });
 
 

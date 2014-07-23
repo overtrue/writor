@@ -62,9 +62,7 @@
                 @endif
             </tbody>
         </table>
-        <div class="pull-right">
-            {{$posts->links()}}
-        </div>
+        
     </div>
 </div>
 @endsection

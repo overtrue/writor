@@ -29,7 +29,7 @@ class PostController extends BaseController {
      */
     public function getAll()
     {
-        $posts = Auth::user()->posts()->paginate(15);
+        $posts = Auth::user()->posts()->paginate(5);
 
         return View::make('backend.pages.post-all')->withPosts($posts);
     }

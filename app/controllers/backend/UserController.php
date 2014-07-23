@@ -15,7 +15,8 @@ class UserController extends BaseController {
 	 */
 	public function getAll()
 	{
-		$users = User::paginate(15);
+		$users = User::orderBy('id', 'DESC')->paginate(5);
+
 		return View::make('backend.pages.user-all')->withUsers($users);
 	}
 

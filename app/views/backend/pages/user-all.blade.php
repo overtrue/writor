@@ -56,8 +56,8 @@
                 @endif
             </tbody>
         </table>
-        <div class="pull-right">
-            {{$users->links()}}
+        <div>
+        {{$users->appends(Input::only('order', 'status'))->links('backend.pager')}}
         </div>
     </div>
 </div>

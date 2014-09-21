@@ -1,4 +1,4 @@
-## Writor
+## laravel-blog-starter
 
 基于Laravel框架开发的博客系统。
 

@@ -1,16 +1,15 @@
 ## Writor
 
-基于Laravel框架开发的博客系统。[http://writor.me](http://writor.me)
+基于Laravel框架开发的博客系统。
 
->目前处于开发阶段...
 
 ###Usage
 ---
-1. clone writor到你的服务器环境
+1. clone laravel-blog-starter到你的服务器环境
 
 	```
 	cd www #你的服务器放网站的目录
-	git clone https://github.com/joychao/writor.git
+	git clone https://github.com/joychao/laravel-blog-starter.git
 	```
 
 1. 切换到`composer.json`所在目录，使用composer安装项目
@@ -20,7 +19,7 @@
  	windows: [https://getcomposer.org/doc/00-intro.md#installation-windows](https://getcomposer.org/doc/00-intro.md#installation-windows)
 
 	```
-	cd www/writor
+	cd www/laravel-blog-starter
 	composer install
 	```
 
@@ -42,7 +41,7 @@
 
 1. 开启重写模块:使用`apache`请开启`mod_rewrite`,使用`nginx`同学请参考这个配置示例：[https://gist.github.com/davzie/3938080](https://gist.github.com/davzie/3938080)
 
-1. 那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
+1. 那么现在访问`http://yourhost/laravel-blog-starter/public/admin` 应该会跳转到后台登录页。
 
 ###友情提示
 ---

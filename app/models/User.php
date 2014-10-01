@@ -33,6 +33,19 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('user_pass');
 
+	public function getStatusNameAttribute()
+	{
+		switch ($this->status) {
+			case 0:
+				return '<label class="label label-success">正常</label>';
+				break;
+
+			default:
+				# code...
+				break;
+		}
+	}
+
 	/**
 	 * Get the unique identifier for the user.
 	 *
@@ -62,7 +75,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->user_email;
 	}
-	
+
 	/**
 	 * Get the token value for the "remember me" session.
 	 *
@@ -72,7 +85,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->remember_token;
 	}
-	
+
 	/**
 	 * Set the token value for the "remember me" session.
 	 *
@@ -83,7 +96,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		$this->remember_token = $value;
 	}
-	
+
 	/**
 	 * Get the column name for the "remember me" token.
 	 *

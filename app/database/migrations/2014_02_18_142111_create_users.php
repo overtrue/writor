@@ -23,7 +23,9 @@ class CreateUsers extends Migration {
 		    $table->string('user_url', 100)->nullable();//网址
 		    $table->string('user_activation_key', 60)->nullable();//激活码
 		    $table->integer('user_status')->nullable()->default(0);//用户状态
+		    $table->integer('deleteable')->nullable()->default(1);//是否允许删除
 		    $table->string('display_name', 60)->nullable();//显示名称
+		    $table->string('remember_token', 60)->nullable();
 		    $table->timestamps();
 		});
 	}

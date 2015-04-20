@@ -46,16 +46,16 @@ class UserController extends BaseController {
 
 		$validator = Validator::make(Input::all(), $rules);
 
-        //验证失败
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator)->withInput(Input::all());
-        }
+        	//验证失败
+        	if ($validator->fails()) {
+            		return Redirect::back()->withErrors($validator)->withInput(Input::all());
+        	}
 
-        $user = new User;
+        	$user = new User;
 
-       	$this->saveUser($user);
+       		$this->saveUser($user);
 
-        return Redirect::back()->withMessage('用户创建成功！', link_to('admin/user/list', '回到用户列表'));
+        	return Redirect::back()->withMessage('用户创建成功！', link_to('admin/user/list', '回到用户列表'));
 	}
 
 	/**

@@ -5,7 +5,7 @@
 > 只完成了后台管理部分，前台请根据需求自行开发。
 
 
-###Usage
+### Usage
 ---
 1. clone writor到你的服务器环境
 
@@ -45,7 +45,7 @@
 
 1. 那么现在访问`http://yourhost/writor/public/admin` 应该会跳转到后台登录页。
 
-###友情提示
+### 友情提示
 ---
 - 因为本项目还在持续开发中，如果你想跟进开发进度请点击右上角的`watch`以便于收到更新邮件通知。
 - 如果你的网络慢，使用composer install老半天没反应，你可以直接拷其它laravel项目的vendor目录放到本目录就好。
@@ -53,4 +53,4 @@
 
 > 当然别忘记点上面的 star 哦! :stuck_out_tongue_winking_eye:
 
-####感谢支持！
+#### 感谢支持！
